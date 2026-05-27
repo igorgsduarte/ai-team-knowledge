@@ -1,22 +1,26 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: TeamKnowledge API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
-    description: Health operations
+  - name: users
+  - name: skills
+  - name: knowledge
+  - name: boards
+  - name: comments
+  - name: stats
+
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,13 +28,922 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  # ── Users / Profiles ──────────────────────────────────────────────────────
+  /users/me:
+    get:
+      operationId: getMe
+      tags: [users]
+      summary: Get current user profile
+      responses:
+        "200":
+          description: Current user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          description: Unauthorized
+    patch:
+      operationId: updateMe
+      tags: [users]
+      summary: Update current user profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserUpdate"
+      responses:
+        "200":
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /users:
+    get:
+      operationId: listUsers
+      tags: [users]
+      summary: List all users in the team
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+
+  /users/{userId}:
+    get:
+      operationId: getUser
+      tags: [users]
+      summary: Get a specific user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: User
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Not found
+
+  # ── Skills ────────────────────────────────────────────────────────────────
+  /skills:
+    get:
+      operationId: listSkills
+      tags: [skills]
+      summary: List all skills
+      parameters:
+        - name: tag
+          in: query
+          schema:
+            type: string
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Skills list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Skill"
+    post:
+      operationId: createSkill
+      tags: [skills]
+      summary: Create a new skill
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+
+  /skills/{skillId}:
+    get:
+      operationId: getSkill
+      tags: [skills]
+      summary: Get a skill with users who have it
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Skill detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SkillDetail"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateSkill
+      tags: [skills]
+      summary: Update a skill
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SkillUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Skill"
+    delete:
+      operationId: deleteSkill
+      tags: [skills]
+      summary: Delete a skill
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── User Skills (associações pessoa ↔ skill) ──────────────────────────────
+  /users/me/skills:
+    get:
+      operationId: listMySkills
+      tags: [skills]
+      summary: List current user skills
+      responses:
+        "200":
+          description: User skills
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserSkill"
+    post:
+      operationId: addMySkill
+      tags: [skills]
+      summary: Add a skill to current user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserSkillInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserSkill"
+
+  /users/me/skills/{skillId}:
+    patch:
+      operationId: updateMySkill
+      tags: [skills]
+      summary: Update proficiency level for a skill
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserSkillUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserSkill"
+    delete:
+      operationId: removeMySkill
+      tags: [skills]
+      summary: Remove a skill from current user
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Removed
+
+  /users/{userId}/skills:
+    get:
+      operationId: listUserSkills
+      tags: [skills]
+      summary: List skills of a specific user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: User skills
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserSkill"
+
+  # ── Knowledge (articles + curated links) ──────────────────────────────────
+  /knowledge:
+    get:
+      operationId: listKnowledge
+      tags: [knowledge]
+      summary: List all knowledge entries
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [article, link]
+        - name: tag
+          in: query
+          schema:
+            type: string
+        - name: search
+          in: query
+          schema:
+            type: string
+        - name: authorId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Knowledge list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/KnowledgeEntry"
+    post:
+      operationId: createKnowledge
+      tags: [knowledge]
+      summary: Create a knowledge entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KnowledgeInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeEntry"
+
+  /knowledge/{entryId}:
+    get:
+      operationId: getKnowledge
+      tags: [knowledge]
+      summary: Get a knowledge entry
+      parameters:
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Knowledge entry
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeEntry"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateKnowledge
+      tags: [knowledge]
+      summary: Update a knowledge entry
+      parameters:
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KnowledgeUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeEntry"
+    delete:
+      operationId: deleteKnowledge
+      tags: [knowledge]
+      summary: Delete a knowledge entry
+      parameters:
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Boards (aprendizados pessoais) ─────────────────────────────────────────
+  /boards:
+    get:
+      operationId: listBoards
+      tags: [boards]
+      summary: List all boards (public feed)
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Boards list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BoardEntry"
+    post:
+      operationId: createBoard
+      tags: [boards]
+      summary: Create a board entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BoardInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoardEntry"
+
+  /boards/{boardId}:
+    get:
+      operationId: getBoard
+      tags: [boards]
+      summary: Get a board entry
+      parameters:
+        - name: boardId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Board entry
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoardEntry"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateBoard
+      tags: [boards]
+      summary: Update a board entry
+      parameters:
+        - name: boardId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BoardUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoardEntry"
+    delete:
+      operationId: deleteBoard
+      tags: [boards]
+      summary: Delete a board entry
+      parameters:
+        - name: boardId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Comments ───────────────────────────────────────────────────────────────
+  /boards/{boardId}/comments:
+    get:
+      operationId: listBoardComments
+      tags: [comments]
+      summary: List comments on a board entry
+      parameters:
+        - name: boardId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Comments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
+    post:
+      operationId: createBoardComment
+      tags: [comments]
+      summary: Add a comment to a board entry
+      parameters:
+        - name: boardId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Comment"
+
+  /knowledge/{entryId}/comments:
+    get:
+      operationId: listKnowledgeComments
+      tags: [comments]
+      summary: List comments on a knowledge entry
+      parameters:
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Comments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
+    post:
+      operationId: createKnowledgeComment
+      tags: [comments]
+      summary: Add a comment to a knowledge entry
+      parameters:
+        - name: entryId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Comment"
+
+  /comments/{commentId}:
+    delete:
+      operationId: deleteComment
+      tags: [comments]
+      summary: Delete a comment
+      parameters:
+        - name: commentId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+
+  # ── Stats (wow endpoints) ──────────────────────────────────────────────────
+  /stats/overview:
+    get:
+      operationId: getStatsOverview
+      tags: [stats]
+      summary: Team-wide stats overview
+      responses:
+        "200":
+          description: Overview stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatsOverview"
+
+  /stats/top-skills:
+    get:
+      operationId: getTopSkills
+      tags: [stats]
+      summary: Most popular skills across the team
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: Top skills
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SkillStat"
+
+  /stats/recent-activity:
+    get:
+      operationId: getRecentActivity
+      tags: [stats]
+      summary: Recent activity feed across all content
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        "200":
+          description: Recent activity items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ActivityItem"
+
+  /stats/skill-map:
+    get:
+      operationId: getSkillMap
+      tags: [stats]
+      summary: Team skill map — who knows what
+      responses:
+        "200":
+          description: Skill map entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SkillMapEntry"
+
 components:
   schemas:
     HealthStatus:
       type: object
+      required: [status]
       properties:
         status:
           type: string
-      required:
-        - status
 
+    # ── User ──────────────────────────────────────────────────────────────────
+    User:
+      type: object
+      required: [id, clerkId, name, email, createdAt]
+      properties:
+        id:            { type: integer }
+        clerkId:       { type: string }
+        name:          { type: string }
+        email:         { type: string }
+        avatarUrl:     { type: ["string", "null"] }
+        bio:           { type: ["string", "null"] }
+        area:          { type: ["string", "null"] }
+        createdAt:     { type: string }
+
+    UserUpdate:
+      type: object
+      properties:
+        name:      { type: string }
+        bio:       { type: string }
+        area:      { type: string }
+        avatarUrl: { type: string }
+
+    # ── Skill ─────────────────────────────────────────────────────────────────
+    Skill:
+      type: object
+      required: [id, name, tags, createdAt]
+      properties:
+        id:          { type: integer }
+        name:        { type: string }
+        description: { type: ["string", "null"] }
+        tags:
+          type: array
+          items: { type: string }
+        usersCount:  { type: integer }
+        createdAt:   { type: string }
+
+    SkillDetail:
+      type: object
+      required: [id, name, tags, createdAt, users]
+      properties:
+        id:          { type: integer }
+        name:        { type: string }
+        description: { type: ["string", "null"] }
+        tags:
+          type: array
+          items: { type: string }
+        usersCount:  { type: integer }
+        createdAt:   { type: string }
+        users:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserSkill"
+
+    SkillInput:
+      type: object
+      required: [name]
+      properties:
+        name:        { type: string, minLength: 1 }
+        description: { type: string }
+        tags:
+          type: array
+          items: { type: string }
+
+    SkillUpdate:
+      type: object
+      properties:
+        name:        { type: string, minLength: 1 }
+        description: { type: string }
+        tags:
+          type: array
+          items: { type: string }
+
+    UserSkill:
+      type: object
+      required: [id, userId, skillId, level, skill, createdAt]
+      properties:
+        id:        { type: integer }
+        userId:    { type: integer }
+        skillId:   { type: integer }
+        level:
+          type: string
+          enum: [beginner, intermediate, advanced, expert]
+        skill:
+          $ref: "#/components/schemas/Skill"
+        user:
+          $ref: "#/components/schemas/User"
+        createdAt: { type: string }
+
+    UserSkillInput:
+      type: object
+      required: [skillId, level]
+      properties:
+        skillId: { type: integer }
+        level:
+          type: string
+          enum: [beginner, intermediate, advanced, expert]
+
+    UserSkillUpdate:
+      type: object
+      required: [level]
+      properties:
+        level:
+          type: string
+          enum: [beginner, intermediate, advanced, expert]
+
+    # ── Knowledge ─────────────────────────────────────────────────────────────
+    KnowledgeEntry:
+      type: object
+      required: [id, authorId, type, title, tags, commentsCount, createdAt]
+      properties:
+        id:            { type: integer }
+        authorId:      { type: integer }
+        type:
+          type: string
+          enum: [article, link]
+        title:         { type: string }
+        content:       { type: ["string", "null"] }
+        url:           { type: ["string", "null"] }
+        description:   { type: ["string", "null"] }
+        tags:
+          type: array
+          items: { type: string }
+        commentsCount: { type: integer }
+        author:
+          $ref: "#/components/schemas/User"
+        createdAt:     { type: string }
+        updatedAt:     { type: string }
+
+    KnowledgeInput:
+      type: object
+      required: [type, title]
+      properties:
+        type:
+          type: string
+          enum: [article, link]
+        title:       { type: string, minLength: 1 }
+        content:     { type: string }
+        url:         { type: string }
+        description: { type: string }
+        tags:
+          type: array
+          items: { type: string }
+
+    KnowledgeUpdate:
+      type: object
+      properties:
+        title:       { type: string, minLength: 1 }
+        content:     { type: string }
+        url:         { type: string }
+        description: { type: string }
+        tags:
+          type: array
+          items: { type: string }
+
+    # ── Board ─────────────────────────────────────────────────────────────────
+    BoardEntry:
+      type: object
+      required: [id, authorId, title, status, commentsCount, createdAt]
+      properties:
+        id:            { type: integer }
+        authorId:      { type: integer }
+        title:         { type: string }
+        content:       { type: ["string", "null"] }
+        status:
+          type: string
+          enum: [learning, doing, done]
+        tags:
+          type: array
+          items: { type: string }
+        commentsCount: { type: integer }
+        author:
+          $ref: "#/components/schemas/User"
+        createdAt:     { type: string }
+        updatedAt:     { type: string }
+
+    BoardInput:
+      type: object
+      required: [title, status]
+      properties:
+        title:   { type: string, minLength: 1 }
+        content: { type: string }
+        status:
+          type: string
+          enum: [learning, doing, done]
+        tags:
+          type: array
+          items: { type: string }
+
+    BoardUpdate:
+      type: object
+      properties:
+        title:   { type: string, minLength: 1 }
+        content: { type: string }
+        status:
+          type: string
+          enum: [learning, doing, done]
+        tags:
+          type: array
+          items: { type: string }
+
+    # ── Comment ───────────────────────────────────────────────────────────────
+    Comment:
+      type: object
+      required: [id, authorId, content, createdAt]
+      properties:
+        id:        { type: integer }
+        authorId:  { type: integer }
+        content:   { type: string }
+        author:
+          $ref: "#/components/schemas/User"
+        createdAt: { type: string }
+
+    CommentInput:
+      type: object
+      required: [content]
+      properties:
+        content: { type: string, minLength: 1 }
+
+    # ── Stats ─────────────────────────────────────────────────────────────────
+    StatsOverview:
+      type: object
+      required: [totalUsers, totalSkills, totalKnowledge, totalBoards, totalComments]
+      properties:
+        totalUsers:     { type: integer }
+        totalSkills:    { type: integer }
+        totalKnowledge: { type: integer }
+        totalBoards:    { type: integer }
+        totalComments:  { type: integer }
+
+    SkillStat:
+      type: object
+      required: [skillId, name, tags, usersCount]
+      properties:
+        skillId:    { type: integer }
+        name:       { type: string }
+        tags:
+          type: array
+          items: { type: string }
+        usersCount: { type: integer }
+
+    ActivityItem:
+      type: object
+      required: [id, type, title, authorId, authorName, createdAt]
+      properties:
+        id:         { type: integer }
+        type:
+          type: string
+          enum: [board, knowledge, comment, skill]
+        title:      { type: string }
+        authorId:   { type: integer }
+        authorName: { type: string }
+        avatarUrl:  { type: ["string", "null"] }
+        createdAt:  { type: string }
+
+    SkillMapEntry:
+      type: object
+      required: [userId, userName, avatarUrl, area, skills]
+      properties:
+        userId:    { type: integer }
+        userName:  { type: string }
+        avatarUrl: { type: ["string", "null"] }
+        area:      { type: ["string", "null"] }
+        skills:
+          type: array
+          items:
+            type: object
+            required: [skillId, name, level]
+            properties:
+              skillId: { type: integer }
+              name:    { type: string }
+              level:   { type: string }

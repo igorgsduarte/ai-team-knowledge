@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
-import { useSignIn } from "@clerk/react";
 import { Copy, Check, Users, BookOpen, Layers, LogIn, Loader2 } from "lucide-react";
 
 const BASE_URL = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -21,11 +19,8 @@ function CopyButton({ text }: { text: string }) {
 function DemoLoginButton({ email }: { email: string }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { signIn, setActive } = useSignIn();
-  const [, setLocation] = useLocation();
 
   const handleDemoLogin = async () => {
-    if (!signIn) return;
     setLoading(true);
     setError(null);
     try {
@@ -37,16 +32,11 @@ function DemoLoginButton({ email }: { email: string }) {
       if (!res.ok) throw new Error("Falha ao gerar token de acesso");
       const { token } = await res.json();
 
-      const result = await signIn.create({ strategy: "ticket", ticket: token });
-      if (result.status === "complete") {
-        await setActive({ session: result.createdSessionId });
-        setLocation("/dashboard");
-      } else {
-        throw new Error("Login incompleto");
-      }
+      // Redirect to the sign-in page with the Clerk ticket parameter.
+      // The <SignIn> component auto-detects __clerk_ticket and completes login.
+      window.location.href = `${BASE_URL}/sign-in?__clerk_ticket=${encodeURIComponent(token)}`;
     } catch (e: any) {
       setError(e.message ?? "Erro ao entrar");
-    } finally {
       setLoading(false);
     }
   };

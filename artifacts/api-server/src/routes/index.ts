@@ -6,10 +6,12 @@ import knowledgeRouter from "./knowledge";
 import boardsRouter from "./boards";
 import commentsRouter from "./comments";
 import statsRouter from "./stats";
+import demoRouter from "./demo";
 
 const router: IRouter = Router();
 
 router.use(healthRouter);
+router.use(demoRouter);
 router.use(usersRouter);
 router.use(skillsRouter);
 router.use(knowledgeRouter);

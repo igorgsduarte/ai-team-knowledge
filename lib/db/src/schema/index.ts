@@ -4,3 +4,6 @@ export * from "./user-skills";
 export * from "./knowledge";
 export * from "./boards";
 export * from "./comments";
+export * from "./workspaces";
+export * from "./workspace-members";
+export * from "./workspace-invites";

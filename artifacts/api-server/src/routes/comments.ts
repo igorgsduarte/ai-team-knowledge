@@ -11,6 +11,10 @@ import {
   CreateKnowledgeCommentParams,
   CreateKnowledgeCommentBody,
   DeleteCommentParams,
+  ListSkillCommentsParams,
+  ListSkillCommentsResponse,
+  CreateSkillCommentParams,
+  CreateSkillCommentBody,
 } from "@workspace/api-zod";
 import { requireAuth } from "./users";
 
@@ -100,6 +104,46 @@ router.post("/knowledge/:entryId/comments", requireAuth, async (req: any, res): 
   const [comment] = await db.insert(commentsTable).values({
     authorId: me.id,
     knowledgeId: params.data.entryId,
+    content: parsed.data.content,
+  }).returning();
+
+  res.status(201).json(formatComment(comment, me));
+});
+
+router.get("/skills/:skillId/comments", async (req, res): Promise<void> => {
+  const params = ListSkillCommentsParams.safeParse({ skillId: Number(req.params.skillId) });
+  if (!params.success) {
+    res.status(400).json({ error: params.error.message });
+    return;
+  }
+
+  const rows = await db
+    .select()
+    .from(commentsTable)
+    .leftJoin(usersTable, eq(commentsTable.authorId, usersTable.id))
+    .where(eq(commentsTable.skillId, params.data.skillId))
+    .orderBy(commentsTable.createdAt);
+
+  res.json(ListSkillCommentsResponse.parse(rows.map(r => formatComment(r.comments, r.users))));
+});
+
+router.post("/skills/:skillId/comments", requireAuth, async (req: any, res): Promise<void> => {
+  const params = CreateSkillCommentParams.safeParse({ skillId: Number(req.params.skillId) });
+  const parsed = CreateSkillCommentBody.safeParse(req.body);
+  if (!params.success || !parsed.success) {
+    res.status(400).json({ error: "Invalid request" });
+    return;
+  }
+
+  const [me] = await db.select().from(usersTable).where(eq(usersTable.clerkId, req.clerkId)).limit(1);
+  if (!me) {
+    res.status(401).json({ error: "User not found" });
+    return;
+  }
+
+  const [comment] = await db.insert(commentsTable).values({
+    authorId: me.id,
+    skillId: params.data.skillId,
     content: parsed.data.content,
   }).returning();
 

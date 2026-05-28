@@ -7,12 +7,14 @@ import boardsRouter from "./boards";
 import commentsRouter from "./comments";
 import statsRouter from "./stats";
 import demoRouter from "./demo";
+import workspacesRouter from "./workspaces";
 
 const router: IRouter = Router();
 
 router.use(healthRouter);
 router.use(demoRouter);
 router.use(usersRouter);
+router.use(workspacesRouter);
 router.use(skillsRouter);
 router.use(knowledgeRouter);
 router.use(boardsRouter);

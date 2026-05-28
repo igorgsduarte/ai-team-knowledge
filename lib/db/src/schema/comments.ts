@@ -8,6 +8,7 @@ export const commentsTable = pgTable("comments", {
   authorId: integer("author_id").notNull().references(() => usersTable.id, { onDelete: "cascade" }),
   boardId: integer("board_id"),
   knowledgeId: integer("knowledge_id"),
+  skillId: integer("skill_id"),
   content: text("content").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });

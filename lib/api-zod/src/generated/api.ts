@@ -133,6 +133,7 @@ export const GetSkillResponse = zod.object({
   "description": zod.string().nullish(),
   "tags": zod.array(zod.string()),
   "usersCount": zod.number().optional(),
+  "commentsCount": zod.number().optional(),
   "createdAt": zod.string(),
   "users": zod.array(zod.object({
   "id": zod.number(),
@@ -662,6 +663,240 @@ export const CreateKnowledgeCommentBody = zod.object({
  */
 export const DeleteCommentParams = zod.object({
   "commentId": zod.coerce.number()
+})
+
+
+/**
+ * @summary List comments on a skill
+ */
+export const ListSkillCommentsParams = zod.object({
+  "skillId": zod.coerce.number()
+})
+
+export const ListSkillCommentsResponseItem = zod.object({
+  "id": zod.number(),
+  "authorId": zod.number(),
+  "content": zod.string(),
+  "author": zod.object({
+  "id": zod.number(),
+  "clerkId": zod.string(),
+  "name": zod.string(),
+  "email": zod.string(),
+  "avatarUrl": zod.string().nullish(),
+  "bio": zod.string().nullish(),
+  "area": zod.string().nullish(),
+  "createdAt": zod.string()
+}).optional(),
+  "createdAt": zod.string()
+})
+export const ListSkillCommentsResponse = zod.array(ListSkillCommentsResponseItem)
+
+
+/**
+ * @summary Add a comment to a skill
+ */
+export const CreateSkillCommentParams = zod.object({
+  "skillId": zod.coerce.number()
+})
+
+
+
+
+export const CreateSkillCommentBody = zod.object({
+  "content": zod.string().min(1)
+})
+
+
+/**
+ * @summary List workspaces the current user belongs to
+ */
+export const ListWorkspacesResponseItem = zod.object({
+  "id": zod.number(),
+  "name": zod.string(),
+  "slug": zod.string(),
+  "ownerId": zod.number(),
+  "role": zod.string().nullish(),
+  "membersCount": zod.number().optional(),
+  "createdAt": zod.string(),
+  "updatedAt": zod.string().optional()
+})
+export const ListWorkspacesResponse = zod.array(ListWorkspacesResponseItem)
+
+
+/**
+ * @summary Create a new workspace
+ */
+
+
+
+export const CreateWorkspaceBody = zod.object({
+  "name": zod.string().min(1)
+})
+
+
+/**
+ * @summary Get workspace details with members
+ */
+export const GetWorkspaceParams = zod.object({
+  "workspaceId": zod.coerce.number()
+})
+
+export const GetWorkspaceResponse = zod.object({
+  "id": zod.number(),
+  "name": zod.string(),
+  "slug": zod.string(),
+  "ownerId": zod.number(),
+  "role": zod.string().nullish(),
+  "membersCount": zod.number().optional(),
+  "createdAt": zod.string(),
+  "updatedAt": zod.string().optional(),
+  "members": zod.array(zod.object({
+  "id": zod.number(),
+  "workspaceId": zod.number(),
+  "userId": zod.number(),
+  "role": zod.enum(['owner', 'admin', 'editor']),
+  "joinedAt": zod.string(),
+  "user": zod.object({
+  "id": zod.number().optional(),
+  "name": zod.string().optional(),
+  "email": zod.string().optional(),
+  "avatarUrl": zod.string().nullish(),
+  "area": zod.string().nullish()
+}).nullish()
+}))
+})
+
+
+/**
+ * @summary Update workspace name (owner/admin only)
+ */
+export const UpdateWorkspaceParams = zod.object({
+  "workspaceId": zod.coerce.number()
+})
+
+
+
+
+export const UpdateWorkspaceBody = zod.object({
+  "name": zod.string().min(1)
+})
+
+export const UpdateWorkspaceResponse = zod.object({
+  "id": zod.number(),
+  "name": zod.string(),
+  "slug": zod.string(),
+  "ownerId": zod.number(),
+  "role": zod.string().nullish(),
+  "membersCount": zod.number().optional(),
+  "createdAt": zod.string(),
+  "updatedAt": zod.string().optional()
+})
+
+
+/**
+ * @summary List workspace members
+ */
+export const ListWorkspaceMembersParams = zod.object({
+  "workspaceId": zod.coerce.number()
+})
+
+export const ListWorkspaceMembersResponseItem = zod.object({
+  "id": zod.number(),
+  "workspaceId": zod.number(),
+  "userId": zod.number(),
+  "role": zod.enum(['owner', 'admin', 'editor']),
+  "joinedAt": zod.string(),
+  "user": zod.object({
+  "id": zod.number().optional(),
+  "name": zod.string().optional(),
+  "email": zod.string().optional(),
+  "avatarUrl": zod.string().nullish(),
+  "area": zod.string().nullish()
+}).nullish()
+})
+export const ListWorkspaceMembersResponse = zod.array(ListWorkspaceMembersResponseItem)
+
+
+/**
+ * @summary Change a member role (owner/admin only)
+ */
+export const UpdateWorkspaceMemberParams = zod.object({
+  "workspaceId": zod.coerce.number(),
+  "memberId": zod.coerce.number()
+})
+
+export const UpdateWorkspaceMemberBody = zod.object({
+  "role": zod.enum(['admin', 'editor'])
+})
+
+export const UpdateWorkspaceMemberResponse = zod.object({
+  "id": zod.number(),
+  "workspaceId": zod.number(),
+  "userId": zod.number(),
+  "role": zod.enum(['owner', 'admin', 'editor']),
+  "joinedAt": zod.string(),
+  "user": zod.object({
+  "id": zod.number().optional(),
+  "name": zod.string().optional(),
+  "email": zod.string().optional(),
+  "avatarUrl": zod.string().nullish(),
+  "area": zod.string().nullish()
+}).nullish()
+})
+
+
+/**
+ * @summary Remove a member from workspace
+ */
+export const RemoveWorkspaceMemberParams = zod.object({
+  "workspaceId": zod.coerce.number(),
+  "memberId": zod.coerce.number()
+})
+
+
+/**
+ * @summary List pending invites (owner/admin only)
+ */
+export const ListWorkspaceInvitesParams = zod.object({
+  "workspaceId": zod.coerce.number()
+})
+
+export const ListWorkspaceInvitesResponseItem = zod.object({
+  "id": zod.number(),
+  "email": zod.string(),
+  "role": zod.string(),
+  "token": zod.string(),
+  "acceptedAt": zod.string().nullish(),
+  "expiresAt": zod.string(),
+  "createdAt": zod.string()
+})
+export const ListWorkspaceInvitesResponse = zod.array(ListWorkspaceInvitesResponseItem)
+
+
+/**
+ * @summary Invite a user to workspace by email (owner/admin only)
+ */
+export const CreateWorkspaceInviteParams = zod.object({
+  "workspaceId": zod.coerce.number()
+})
+
+export const createWorkspaceInviteBodyRoleDefault = `editor`;
+
+export const CreateWorkspaceInviteBody = zod.object({
+  "email": zod.string(),
+  "role": zod.enum(['admin', 'editor']).default(createWorkspaceInviteBodyRoleDefault)
+})
+
+
+/**
+ * @summary Accept a workspace invite by token
+ */
+export const AcceptWorkspaceInviteParams = zod.object({
+  "token": zod.coerce.string()
+})
+
+export const AcceptWorkspaceInviteResponse = zod.object({
+  "success": zod.boolean()
 })
 
 

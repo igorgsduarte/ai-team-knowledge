@@ -1,6 +1,6 @@
 import { Router, type IRouter } from "express";
 import { eq, ilike, sql, and } from "drizzle-orm";
-import { db, skillsTable, userSkillsTable, usersTable } from "@workspace/db";
+import { db, skillsTable, userSkillsTable, usersTable, commentsTable } from "@workspace/db";
 import {
   ListSkillsQueryParams,
   ListSkillsResponse,
@@ -110,8 +110,14 @@ router.get("/skills/:skillId", async (req, res): Promise<void> => {
 
   const users = userSkillsRows.map(row => formatUserSkill(row.user_skills, skill, row.users));
 
+  const [countRow] = await db
+    .select({ count: sql<number>`count(*)::int` })
+    .from(commentsTable)
+    .where(eq(commentsTable.skillId, skill.id));
+
   res.json(GetSkillResponse.parse({
     ...formatSkill(skill, users.length),
+    commentsCount: countRow?.count ?? 0,
     users,
   }));
 });

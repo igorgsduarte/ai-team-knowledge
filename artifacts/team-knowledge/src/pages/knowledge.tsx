@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useListKnowledge, useCreateKnowledge, useDeleteKnowledge, useListKnowledgeComments, useCreateKnowledgeComment, getListKnowledgeQueryKey, getListKnowledgeCommentsQueryKey } from "@workspace/api-client-react";
+import { useLocation } from "wouter";
+import { useListKnowledge, useCreateKnowledge, getListKnowledgeQueryKey } from "@workspace/api-client-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetMe } from "@workspace/api-client-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MessageSquare, Plus, Trash2, FileText, Link2, Search } from "lucide-react";
+import { MessageSquare, Plus, FileText, Link2, Search, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { formatDistanceToNow } from "date-fns";
 
@@ -103,111 +104,53 @@ function CreateKnowledgeDialog({ onCreated }: { onCreated: () => void }) {
   );
 }
 
-function KnowledgeCard({ entry, myId, onDelete }: { entry: any; myId?: number; onDelete: () => void }) {
-  const [expanded, setExpanded] = useState(false);
-  const [comment, setComment] = useState("");
-  const { data: comments } = useListKnowledgeComments(entry.id, {
-    query: { enabled: expanded, queryKey: getListKnowledgeCommentsQueryKey(entry.id) },
-  });
-  const createComment = useCreateKnowledgeComment();
-  const deleteKnowledge = useDeleteKnowledge();
-  const queryClient = useQueryClient();
-  const { toast } = useToast();
-
-  const handleComment = () => {
-    if (!comment.trim()) return;
-    createComment.mutate(
-      { entryId: entry.id, data: { content: comment } },
-      {
-        onSuccess: () => {
-          setComment("");
-          queryClient.invalidateQueries({ queryKey: getListKnowledgeCommentsQueryKey(entry.id) });
-        },
-      }
-    );
-  };
-
-  const handleDelete = () => {
-    deleteKnowledge.mutate({ entryId: entry.id }, {
-      onSuccess: () => { onDelete(); toast({ title: "Entrada removida" }); },
-    });
-  };
+function KnowledgeCard({ entry }: { entry: any }) {
+  const [, setLocation] = useLocation();
 
   return (
-    <Card className="hover:shadow-md transition-shadow">
+    <Card
+      className="hover:border-border/80 hover:bg-muted/30 transition-all cursor-pointer group"
+      onClick={() => setLocation(`/knowledge/${entry.id}`)}
+    >
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
-          <div className="flex items-center gap-3">
-            <Avatar className="w-8 h-8">
+          <div className="flex items-center gap-2.5">
+            <Avatar className="w-7 h-7">
               <AvatarImage src={entry.author?.avatarUrl ?? undefined} />
-              <AvatarFallback>{entry.author?.name?.[0] ?? "?"}</AvatarFallback>
+              <AvatarFallback className="text-xs">{entry.author?.name?.[0] ?? "?"}</AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-sm font-medium">{entry.author?.name ?? "Usuário"}</p>
+              <p className="text-xs font-medium">{entry.author?.name ?? "Usuário"}</p>
               <p className="text-xs text-muted-foreground">{formatDistanceToNow(new Date(entry.createdAt), { addSuffix: true })}</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium ${entry.type === "article" ? "bg-purple-100 text-purple-700" : "bg-cyan-100 text-cyan-700"}`}>
-              {entry.type === "article" ? <FileText className="w-3 h-3" /> : <Link2 className="w-3 h-3" />}
-              {entry.type === "article" ? "Artigo" : "Link"}
-            </span>
-            {myId === entry.authorId && (
-              <Button variant="ghost" size="sm" onClick={handleDelete}>
-                <Trash2 className="w-3 h-3" />
-              </Button>
-            )}
-          </div>
+          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium shrink-0 ${entry.type === "article" ? "bg-primary/15 text-primary" : "bg-cyan-500/15 text-cyan-400"}`}>
+            {entry.type === "article" ? <FileText className="w-3 h-3" /> : <Link2 className="w-3 h-3" />}
+            {entry.type === "article" ? "Artigo" : "Link"}
+          </span>
         </div>
-        <CardTitle className="text-base mt-2">{entry.title}</CardTitle>
+        <CardTitle className="text-sm font-semibold mt-2 leading-snug group-hover:text-primary transition-colors">{entry.title}</CardTitle>
         {entry.tags?.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-1">
-            {entry.tags.map((t: string) => <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>)}
+            {entry.tags.slice(0, 3).map((t: string) => <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>)}
+            {entry.tags.length > 3 && <Badge variant="secondary" className="text-xs">+{entry.tags.length - 3}</Badge>}
           </div>
         )}
       </CardHeader>
-      <CardContent className="pt-0 space-y-3">
+      <CardContent className="pt-0">
         {entry.type === "article" && entry.content && (
-          <p className="text-sm text-muted-foreground line-clamp-3">{entry.content}</p>
+          <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{entry.content}</p>
         )}
-        {entry.type === "link" && (
-          <div className="space-y-1">
-            {entry.description && <p className="text-sm text-muted-foreground">{entry.description}</p>}
-            {entry.url && (
-              <a href={entry.url} target="_blank" rel="noopener noreferrer" className="text-xs text-primary hover:underline flex items-center gap-1">
-                <Link2 className="w-3 h-3" />{entry.url}
-              </a>
-            )}
-          </div>
+        {entry.type === "link" && entry.description && (
+          <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{entry.description}</p>
         )}
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <MessageSquare className="w-3.5 h-3.5" />
-          {entry.commentsCount} {entry.commentsCount === 1 ? "comentário" : "comentários"}
-        </button>
-
-        {expanded && (
-          <div className="space-y-3">
-            {comments?.map(c => (
-              <div key={c.id} className="flex gap-2">
-                <Avatar className="w-6 h-6">
-                  <AvatarImage src={c.author?.avatarUrl ?? undefined} />
-                  <AvatarFallback className="text-xs">{c.author?.name?.[0] ?? "?"}</AvatarFallback>
-                </Avatar>
-                <div className="flex-1 bg-muted rounded-md px-3 py-2">
-                  <p className="text-xs font-medium">{c.author?.name}</p>
-                  <p className="text-xs">{c.content}</p>
-                </div>
-              </div>
-            ))}
-            <div className="flex gap-2">
-              <Textarea value={comment} onChange={e => setComment(e.target.value)} placeholder="Comente..." rows={2} className="text-sm" />
-              <Button size="sm" onClick={handleComment} disabled={createComment.isPending}>Enviar</Button>
-            </div>
-          </div>
-        )}
+        <div className="flex items-center justify-between">
+          <span className="flex items-center gap-1 text-xs text-muted-foreground">
+            <MessageSquare className="w-3.5 h-3.5" />
+            {entry.commentsCount ?? 0} {(entry.commentsCount ?? 0) === 1 ? "comentário" : "comentários"}
+          </span>
+          <ArrowRight className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+        </div>
       </CardContent>
     </Card>
   );
@@ -233,7 +176,7 @@ export default function KnowledgePage() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">Banco de Conhecimento</h2>
-          <p className="text-muted-foreground">Artigos escritos e links curados pelo time.</p>
+          <p className="text-muted-foreground text-sm">Artigos escritos e links curados pelo time.</p>
         </div>
         <CreateKnowledgeDialog onCreated={() => { queryClient.invalidateQueries({ queryKey: getListKnowledgeQueryKey() }); refetch(); }} />
       </div>
@@ -253,7 +196,7 @@ export default function KnowledgePage() {
         </Select>
       </div>
 
-      {isLoading && <p className="text-muted-foreground">Carregando...</p>}
+      {isLoading && <p className="text-muted-foreground text-sm">Carregando...</p>}
       {!isLoading && entries?.length === 0 && (
         <Card className="py-12 text-center">
           <CardContent>
@@ -265,12 +208,7 @@ export default function KnowledgePage() {
 
       <div className="grid gap-4 md:grid-cols-2">
         {entries?.map(entry => (
-          <KnowledgeCard
-            key={entry.id}
-            entry={entry}
-            myId={me?.id}
-            onDelete={() => { queryClient.invalidateQueries({ queryKey: getListKnowledgeQueryKey() }); refetch(); }}
-          />
+          <KnowledgeCard key={entry.id} entry={entry} />
         ))}
       </div>
     </div>

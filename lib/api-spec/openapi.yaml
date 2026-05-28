@@ -14,6 +14,7 @@ tags:
   - name: boards
   - name: comments
   - name: stats
+  - name: workspaces
 
 paths:
   /healthz:
@@ -596,6 +597,263 @@ paths:
         "204":
           description: Deleted
 
+  # ── Skill Comments ─────────────────────────────────────────────────────────
+  /skills/{skillId}/comments:
+    get:
+      operationId: listSkillComments
+      tags: [comments]
+      summary: List comments on a skill
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Comments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
+    post:
+      operationId: createSkillComment
+      tags: [comments]
+      summary: Add a comment to a skill
+      parameters:
+        - name: skillId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Comment"
+
+  # ── Workspaces ─────────────────────────────────────────────────────────────
+  /workspaces:
+    get:
+      operationId: listWorkspaces
+      tags: [workspaces]
+      summary: List workspaces the current user belongs to
+      responses:
+        "200":
+          description: Workspaces list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Workspace"
+    post:
+      operationId: createWorkspace
+      tags: [workspaces]
+      summary: Create a new workspace
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkspaceInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Workspace"
+
+  /workspaces/{workspaceId}:
+    get:
+      operationId: getWorkspace
+      tags: [workspaces]
+      summary: Get workspace details with members
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Workspace with members
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkspaceDetail"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateWorkspace
+      tags: [workspaces]
+      summary: Update workspace name (owner/admin only)
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkspaceInput"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Workspace"
+
+  /workspaces/{workspaceId}/members:
+    get:
+      operationId: listWorkspaceMembers
+      tags: [workspaces]
+      summary: List workspace members
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Members
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WorkspaceMember"
+
+  /workspaces/{workspaceId}/members/{memberId}:
+    patch:
+      operationId: updateWorkspaceMember
+      tags: [workspaces]
+      summary: Change a member role (owner/admin only)
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkspaceMemberUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkspaceMember"
+    delete:
+      operationId: removeWorkspaceMember
+      tags: [workspaces]
+      summary: Remove a member from workspace
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: memberId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Removed
+
+  /workspaces/{workspaceId}/invites:
+    get:
+      operationId: listWorkspaceInvites
+      tags: [workspaces]
+      summary: List pending invites (owner/admin only)
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Invites
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/WorkspaceInvite"
+    post:
+      operationId: createWorkspaceInvite
+      tags: [workspaces]
+      summary: Invite a user to workspace by email (owner/admin only)
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkspaceInviteInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WorkspaceInvite"
+
+  /workspaces/invites/{token}/accept:
+    post:
+      operationId: acceptWorkspaceInvite
+      tags: [workspaces]
+      summary: Accept a workspace invite by token
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [success]
+                properties:
+                  success: { type: boolean }
+
   # ── Stats (wow endpoints) ──────────────────────────────────────────────────
   /stats/overview:
     get:
@@ -716,14 +974,15 @@ components:
       type: object
       required: [id, name, tags, createdAt, users]
       properties:
-        id:          { type: integer }
-        name:        { type: string }
-        description: { type: ["string", "null"] }
+        id:            { type: integer }
+        name:          { type: string }
+        description:   { type: ["string", "null"] }
         tags:
           type: array
           items: { type: string }
-        usersCount:  { type: integer }
-        createdAt:   { type: string }
+        usersCount:    { type: integer }
+        commentsCount: { type: integer }
+        createdAt:     { type: string }
         users:
           type: array
           items:
@@ -875,6 +1134,94 @@ components:
         tags:
           type: array
           items: { type: string }
+
+    # ── Workspace ─────────────────────────────────────────────────────────────
+    Workspace:
+      type: object
+      required: [id, name, slug, ownerId, createdAt]
+      properties:
+        id:           { type: integer }
+        name:         { type: string }
+        slug:         { type: string }
+        ownerId:      { type: integer }
+        role:         { type: ["string", "null"] }
+        membersCount: { type: integer }
+        createdAt:    { type: string }
+        updatedAt:    { type: string }
+
+    WorkspaceDetail:
+      type: object
+      required: [id, name, slug, ownerId, createdAt, members]
+      properties:
+        id:           { type: integer }
+        name:         { type: string }
+        slug:         { type: string }
+        ownerId:      { type: integer }
+        role:         { type: ["string", "null"] }
+        membersCount: { type: integer }
+        createdAt:    { type: string }
+        updatedAt:    { type: string }
+        members:
+          type: array
+          items:
+            $ref: "#/components/schemas/WorkspaceMember"
+
+    WorkspaceInput:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string, minLength: 1 }
+
+    WorkspaceMember:
+      type: object
+      required: [id, workspaceId, userId, role, joinedAt]
+      properties:
+        id:          { type: integer }
+        workspaceId: { type: integer }
+        userId:      { type: integer }
+        role:
+          type: string
+          enum: [owner, admin, editor]
+        joinedAt:    { type: string }
+        user:
+          type: object
+          nullable: true
+          properties:
+            id:        { type: integer }
+            name:      { type: string }
+            email:     { type: string }
+            avatarUrl: { type: ["string", "null"] }
+            area:      { type: ["string", "null"] }
+
+    WorkspaceMemberUpdate:
+      type: object
+      required: [role]
+      properties:
+        role:
+          type: string
+          enum: [admin, editor]
+
+    WorkspaceInvite:
+      type: object
+      required: [id, email, role, token, expiresAt, createdAt]
+      properties:
+        id:         { type: integer }
+        email:      { type: string }
+        role:       { type: string }
+        token:      { type: string }
+        acceptedAt: { type: ["string", "null"] }
+        expiresAt:  { type: string }
+        createdAt:  { type: string }
+
+    WorkspaceInviteInput:
+      type: object
+      required: [email]
+      properties:
+        email: { type: string }
+        role:
+          type: string
+          enum: [admin, editor]
+          default: editor
 
     # ── Comment ───────────────────────────────────────────────────────────────
     Comment:

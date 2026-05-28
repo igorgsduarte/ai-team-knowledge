@@ -5,16 +5,15 @@
  * TeamKnowledge API
  * OpenAPI spec version: 0.1.0
  */
-import type { UserSkill } from './userSkill';
 
-export interface SkillDetail {
+export interface Workspace {
   id: number;
   name: string;
+  slug: string;
+  ownerId: number;
   /** @nullable */
-  description?: string | null;
-  tags: string[];
-  usersCount?: number;
-  commentsCount?: number;
+  role?: string | null;
+  membersCount?: number;
   createdAt: string;
-  users: UserSkill[];
+  updatedAt?: string;
 }

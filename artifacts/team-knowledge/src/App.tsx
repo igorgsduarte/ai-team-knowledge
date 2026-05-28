@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { ClerkProvider, SignIn, SignUp, Show, useClerk } from "@clerk/react";
 import { publishableKeyFromHost } from "@clerk/react/internal";
-import { shadcn } from "@clerk/themes";
+import { dark } from "@clerk/themes";
 import { Switch, Route, useLocation, Router as WouterRouter, Redirect } from "wouter";
 import { QueryClient, QueryClientProvider, useQueryClient } from "@tanstack/react-query";
 
@@ -13,10 +13,14 @@ import LandingPage from "@/pages/landing";
 import DashboardPage from "@/pages/dashboard";
 import BoardPage from "@/pages/board";
 import KnowledgePage from "@/pages/knowledge";
+import KnowledgeDetailPage from "@/pages/knowledge-detail";
 import SkillsPage from "@/pages/skills";
+import SkillDetailPage from "@/pages/skill-detail";
 import TeamPage from "@/pages/team";
 import ProfilePage from "@/pages/profile";
+import WorkspaceNewPage from "@/pages/workspace-new";
 import Layout from "@/components/layout";
+import { WorkspaceProvider, useWorkspace } from "@/context/workspace";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,7 +50,7 @@ if (!clerkPubKey) {
 }
 
 const clerkAppearance = {
-  theme: shadcn,
+  baseTheme: dark,
   cssLayerName: "clerk",
   options: {
     logoPlacement: "inside" as const,
@@ -54,42 +58,31 @@ const clerkAppearance = {
     logoImageUrl: `${window.location.origin}${basePath}/logo.svg`,
   },
   variables: {
-    colorPrimary: "hsl(243 75% 25%)",
-    colorForeground: "hsl(240 10% 15%)",
-    colorMutedForeground: "hsl(240 5% 45%)",
-    colorDanger: "hsl(0 84% 60%)",
-    colorBackground: "hsl(0 0% 100%)",
-    colorInput: "hsl(0 0% 100%)",
-    colorInputForeground: "hsl(240 10% 15%)",
-    colorNeutral: "hsl(240 10% 85%)",
+    colorPrimary: "hsl(265 70% 60%)",
+    colorForeground: "hsl(260 10% 92%)",
+    colorMutedForeground: "hsl(260 8% 55%)",
+    colorDanger: "hsl(0 62% 50%)",
+    colorBackground: "hsl(240 12% 7%)",
+    colorInput: "hsl(240 12% 10%)",
+    colorInputForeground: "hsl(260 10% 92%)",
+    colorNeutral: "hsl(260 8% 16%)",
     fontFamily: "'Plus Jakarta Sans', sans-serif",
     borderRadius: "0.5rem",
   },
   elements: {
     rootBox: "w-full flex justify-center",
-    cardBox: "bg-white rounded-2xl w-[440px] max-w-full overflow-hidden border border-border shadow-sm",
-    card: "!shadow-none !border-0 !bg-transparent !rounded-none",
-    footer: "!shadow-none !border-0 !bg-transparent !rounded-none",
-    headerTitle: "text-2xl font-bold tracking-tight text-foreground",
-    headerSubtitle: "text-sm text-muted-foreground",
-    socialButtonsBlockButtonText: "text-sm font-medium",
-    formFieldLabel: "text-sm font-medium text-foreground",
+    cardBox: "rounded-2xl w-[440px] max-w-full overflow-hidden border border-border shadow-sm",
+    card: "!shadow-none !border-0 !rounded-none",
+    footer: "!shadow-none !border-0 !rounded-none",
+    headerTitle: "text-2xl font-bold tracking-tight",
+    headerSubtitle: "text-sm",
     footerActionLink: "text-sm font-medium text-primary hover:text-primary/90",
-    footerActionText: "text-sm text-muted-foreground",
-    dividerText: "text-xs text-muted-foreground uppercase",
-    identityPreviewEditButton: "text-primary hover:text-primary/90",
-    formFieldSuccessText: "text-sm text-green-600",
-    alertText: "text-sm text-destructive",
+    formButtonPrimary: "w-full",
+    formFieldInput: "flex h-10 w-full rounded-md border px-3 py-2 text-sm",
+    socialButtonsBlockButton: "w-full border",
     logoBox: "mb-6 flex justify-center",
     logoImage: "h-12 w-auto",
-    socialButtonsBlockButton: "w-full border border-border hover:bg-muted bg-background text-foreground",
-    formButtonPrimary: "w-full bg-primary text-primary-foreground hover:bg-primary/90",
-    formFieldInput: "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
     footerAction: "flex items-center justify-center gap-2",
-    dividerLine: "bg-border h-[1px] w-full",
-    alert: "bg-destructive/10 text-destructive border border-destructive/20 rounded-md p-3",
-    otpCodeFieldInput: "h-10 w-10 text-center border border-input rounded-md text-sm",
-    formFieldRow: "mb-4",
     main: "w-full",
   },
 };
@@ -145,17 +138,38 @@ function HomeRedirect() {
   );
 }
 
+function WorkspaceGuard({ children }: { children: React.ReactNode }) {
+  const { hasNoWorkspace, isLoading } = useWorkspace();
+  const [location] = useLocation();
+  if (isLoading) return null;
+  if (hasNoWorkspace && location !== "/workspace/new") {
+    return <Redirect to="/workspace/new" />;
+  }
+  return <>{children}</>;
+}
+
 function ProtectedRoute({ component: Component }: { component: React.ComponentType }) {
   return (
     <>
       <Show when="signed-in">
-        <Layout>
-          <Component />
-        </Layout>
+        <WorkspaceGuard>
+          <Layout>
+            <Component />
+          </Layout>
+        </WorkspaceGuard>
       </Show>
       <Show when="signed-out">
         <Redirect to="/" />
       </Show>
+    </>
+  );
+}
+
+function WorkspaceNewRoute() {
+  return (
+    <>
+      <Show when="signed-in"><WorkspaceNewPage /></Show>
+      <Show when="signed-out"><Redirect to="/" /></Show>
     </>
   );
 }
@@ -175,18 +189,23 @@ function ClerkProviderWithRoutes() {
     >
       <QueryClientProvider client={queryClient}>
         <ClerkQueryClientCacheInvalidator />
-        <Switch>
-          <Route path="/" component={HomeRedirect} />
-          <Route path="/sign-in/*?" component={SignInPage} />
-          <Route path="/sign-up/*?" component={SignUpPage} />
-          <Route path="/dashboard"><ProtectedRoute component={DashboardPage} /></Route>
-          <Route path="/board"><ProtectedRoute component={BoardPage} /></Route>
-          <Route path="/knowledge"><ProtectedRoute component={KnowledgePage} /></Route>
-          <Route path="/skills"><ProtectedRoute component={SkillsPage} /></Route>
-          <Route path="/team"><ProtectedRoute component={TeamPage} /></Route>
-          <Route path="/profile"><ProtectedRoute component={ProfilePage} /></Route>
-          <Route component={NotFound} />
-        </Switch>
+        <WorkspaceProvider>
+          <Switch>
+            <Route path="/" component={HomeRedirect} />
+            <Route path="/sign-in/*?" component={SignInPage} />
+            <Route path="/sign-up/*?" component={SignUpPage} />
+            <Route path="/workspace/new" component={WorkspaceNewRoute} />
+            <Route path="/dashboard"><ProtectedRoute component={DashboardPage} /></Route>
+            <Route path="/board"><ProtectedRoute component={BoardPage} /></Route>
+            <Route path="/knowledge/:id"><ProtectedRoute component={KnowledgeDetailPage} /></Route>
+            <Route path="/knowledge"><ProtectedRoute component={KnowledgePage} /></Route>
+            <Route path="/skills/:id"><ProtectedRoute component={SkillDetailPage} /></Route>
+            <Route path="/skills"><ProtectedRoute component={SkillsPage} /></Route>
+            <Route path="/team"><ProtectedRoute component={TeamPage} /></Route>
+            <Route path="/profile"><ProtectedRoute component={ProfilePage} /></Route>
+            <Route component={NotFound} />
+          </Switch>
+        </WorkspaceProvider>
       </QueryClientProvider>
     </ClerkProvider>
   );

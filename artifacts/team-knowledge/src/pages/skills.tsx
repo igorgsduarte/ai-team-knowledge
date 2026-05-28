@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import {
   useListSkills,
   useCreateSkill,
@@ -17,19 +18,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, Tag, Users, CheckCircle2, Search } from "lucide-react";
+import { Plus, Tag, Users, CheckCircle2, Search, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const LEVEL_LABELS: Record<string, string> = {
   beginner: "Iniciante",
   intermediate: "Intermediário",
   advanced: "Avançado",
+  expert: "Expert",
 };
 
 const LEVEL_COLORS: Record<string, string> = {
-  beginner: "bg-blue-100 text-blue-700",
-  intermediate: "bg-amber-100 text-amber-700",
-  advanced: "bg-green-100 text-green-700",
+  beginner: "bg-blue-500/15 text-blue-400",
+  intermediate: "bg-amber-500/15 text-amber-400",
+  advanced: "bg-green-500/15 text-green-400",
+  expert: "bg-primary/15 text-primary",
 };
 
 function CreateSkillDialog({ onCreated }: { onCreated: () => void }) {
@@ -85,56 +88,9 @@ function CreateSkillDialog({ onCreated }: { onCreated: () => void }) {
   );
 }
 
-function AddToMySkillsDialog({ skill, onAdded }: { skill: any; onAdded: () => void }) {
-  const [open, setOpen] = useState(false);
-  const [level, setLevel] = useState<string>("beginner");
-  const addMySkill = useAddMySkill();
-  const { toast } = useToast();
-
-  const handleAdd = () => {
-    addMySkill.mutate(
-      { data: { skillId: skill.id, level: level as "beginner" | "intermediate" | "advanced" | "expert" } },
-      {
-        onSuccess: () => {
-          setOpen(false);
-          onAdded();
-          toast({ title: `${skill.name} adicionada ao seu perfil!` });
-        },
-        onError: () => toast({ title: "Erro ao adicionar skill", variant: "destructive" }),
-      }
-    );
-  };
-
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button size="sm" variant="outline"><Plus className="w-3 h-3 mr-1" />Adicionar</Button>
-      </DialogTrigger>
-      <DialogContent className="max-w-sm">
-        <DialogHeader><DialogTitle>Adicionar {skill.name} ao seu perfil</DialogTitle></DialogHeader>
-        <div className="space-y-4">
-          <div>
-            <Label>Seu nível</Label>
-            <Select value={level} onValueChange={setLevel}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="beginner">Iniciante</SelectItem>
-                <SelectItem value="intermediate">Intermediário</SelectItem>
-                <SelectItem value="advanced">Avançado</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <Button onClick={handleAdd} disabled={addMySkill.isPending} className="w-full">
-            {addMySkill.isPending ? "Adicionando..." : "Confirmar"}
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
 export default function SkillsPage() {
   const [search, setSearch] = useState("");
+  const [, setLocation] = useLocation();
   const queryClient = useQueryClient();
 
   const { data: skills, isLoading, refetch } = useListSkills(search ? { search } : undefined, {
@@ -142,11 +98,13 @@ export default function SkillsPage() {
   });
   const { data: mySkills } = useListMySkills({ query: { queryKey: getListMySkillsQueryKey() } });
   const removeMySkill = useRemoveMySkill();
+  const addMySkill = useAddMySkill();
   const { toast } = useToast();
 
-  const mySkillIds = new Set(mySkills?.map(s => s.skillId) ?? []);
+  const mySkillMap = new Map(mySkills?.map(s => [s.skillId, s]) ?? []);
 
-  const handleRemove = (skillId: number) => {
+  const handleRemove = (skillId: number, e: React.MouseEvent) => {
+    e.stopPropagation();
     removeMySkill.mutate({ skillId }, {
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: getListMySkillsQueryKey() });
@@ -160,7 +118,7 @@ export default function SkillsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">Banco de Skills</h2>
-          <p className="text-muted-foreground">Explore e gerencie as habilidades do time.</p>
+          <p className="text-muted-foreground text-sm">Explore e gerencie as habilidades do time.</p>
         </div>
         <CreateSkillDialog onCreated={() => { queryClient.invalidateQueries({ queryKey: getListSkillsQueryKey() }); refetch(); }} />
       </div>
@@ -168,16 +126,16 @@ export default function SkillsPage() {
       {mySkills && mySkills.length > 0 && (
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-base">Minhas Skills</CardTitle>
+            <CardTitle className="text-sm font-semibold">Minhas Skills</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
               {mySkills.map(us => (
-                <div key={us.id} className="flex items-center gap-1.5 border rounded-full px-3 py-1">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-green-600" />
+                <div key={us.id} className="flex items-center gap-1.5 border rounded-full px-3 py-1 cursor-pointer hover:border-primary/50 transition-colors" onClick={() => setLocation(`/skills/${us.skillId}`)}>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
                   <span className="text-sm font-medium">{us.skill?.name}</span>
                   <span className={`text-xs px-1.5 py-0.5 rounded-full ${LEVEL_COLORS[us.level] ?? ""}`}>{LEVEL_LABELS[us.level] ?? us.level}</span>
-                  <button onClick={() => handleRemove(us.skillId)} className="text-muted-foreground hover:text-destructive text-xs ml-1">×</button>
+                  <button onClick={(e) => handleRemove(us.skillId, e)} className="text-muted-foreground hover:text-destructive text-xs ml-1 leading-none">×</button>
                 </div>
               ))}
             </div>
@@ -190,38 +148,50 @@ export default function SkillsPage() {
         <Input value={search} onChange={e => setSearch(e.target.value)} placeholder="Buscar skills..." className="pl-9" />
       </div>
 
-      {isLoading && <p className="text-muted-foreground">Carregando...</p>}
+      {isLoading && <p className="text-muted-foreground text-sm">Carregando...</p>}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {skills?.map(skill => (
-          <Card key={skill.id} className="hover:shadow-md transition-shadow">
-            <CardHeader className="pb-2">
-              <div className="flex items-start justify-between">
-                <CardTitle className="text-base">{skill.name}</CardTitle>
-                {mySkillIds.has(skill.id) ? (
-                  <Badge className="bg-green-100 text-green-700 hover:bg-green-100"><CheckCircle2 className="w-3 h-3 mr-1" />Sua skill</Badge>
-                ) : (
-                  <AddToMySkillsDialog skill={skill} onAdded={() => queryClient.invalidateQueries({ queryKey: getListMySkillsQueryKey() })} />
-                )}
-              </div>
-              {skill.description && <p className="text-sm text-muted-foreground">{skill.description}</p>}
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="flex items-center justify-between">
-                <div className="flex flex-wrap gap-1">
-                  {skill.tags?.map((t: string) => (
-                    <Badge key={t} variant="secondary" className="text-xs">
-                      <Tag className="w-2.5 h-2.5 mr-1" />{t}
-                    </Badge>
-                  ))}
+        {skills?.map(skill => {
+          const myEntry = mySkillMap.get(skill.id);
+          return (
+            <Card
+              key={skill.id}
+              className="hover:border-border/80 hover:bg-muted/30 transition-all cursor-pointer group"
+              onClick={() => setLocation(`/skills/${skill.id}`)}
+            >
+              <CardHeader className="pb-2">
+                <div className="flex items-start justify-between gap-2">
+                  <CardTitle className="text-sm font-semibold group-hover:text-primary transition-colors">{skill.name}</CardTitle>
+                  {myEntry ? (
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium shrink-0 ${LEVEL_COLORS[myEntry.level] ?? ""}`}>
+                      {LEVEL_LABELS[myEntry.level] ?? myEntry.level}
+                    </span>
+                  ) : null}
                 </div>
-                <span className="flex items-center gap-1 text-xs text-muted-foreground ml-2 whitespace-nowrap">
-                  <Users className="w-3.5 h-3.5" />{skill.usersCount}
-                </span>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+                {skill.description && <p className="text-xs text-muted-foreground line-clamp-2">{skill.description}</p>}
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <Users className="w-3.5 h-3.5" />{skill.usersCount}
+                    </span>
+                    {skill.tags && skill.tags.length > 0 && (
+                      <div className="flex gap-1">
+                        {skill.tags.slice(0, 2).map((t: string) => (
+                          <Badge key={t} variant="secondary" className="text-xs py-0 h-5">
+                            <Tag className="w-2.5 h-2.5 mr-1" />{t}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <ArrowRight className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
 
       {!isLoading && skills?.length === 0 && (

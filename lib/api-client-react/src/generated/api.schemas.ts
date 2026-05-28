@@ -67,6 +67,7 @@ export interface SkillDetail {
   description?: string | null;
   tags: string[];
   usersCount?: number;
+  commentsCount?: number;
   createdAt: string;
   users: UserSkill[];
 }
@@ -224,6 +225,100 @@ export interface BoardUpdate {
   tags?: string[];
 }
 
+export interface Workspace {
+  id: number;
+  name: string;
+  slug: string;
+  ownerId: number;
+  /** @nullable */
+  role?: string | null;
+  membersCount?: number;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export type WorkspaceMemberRole = typeof WorkspaceMemberRole[keyof typeof WorkspaceMemberRole];
+
+
+export const WorkspaceMemberRole = {
+  owner: 'owner',
+  admin: 'admin',
+  editor: 'editor',
+} as const;
+
+export type WorkspaceMemberUser = {
+  id?: number;
+  name?: string;
+  email?: string;
+  /** @nullable */
+  avatarUrl?: string | null;
+  /** @nullable */
+  area?: string | null;
+} | null;
+
+export interface WorkspaceMember {
+  id: number;
+  workspaceId: number;
+  userId: number;
+  role: WorkspaceMemberRole;
+  joinedAt: string;
+  user?: WorkspaceMemberUser;
+}
+
+export interface WorkspaceDetail {
+  id: number;
+  name: string;
+  slug: string;
+  ownerId: number;
+  /** @nullable */
+  role?: string | null;
+  membersCount?: number;
+  createdAt: string;
+  updatedAt?: string;
+  members: WorkspaceMember[];
+}
+
+export interface WorkspaceInput {
+  /** @minLength 1 */
+  name: string;
+}
+
+export type WorkspaceMemberUpdateRole = typeof WorkspaceMemberUpdateRole[keyof typeof WorkspaceMemberUpdateRole];
+
+
+export const WorkspaceMemberUpdateRole = {
+  admin: 'admin',
+  editor: 'editor',
+} as const;
+
+export interface WorkspaceMemberUpdate {
+  role: WorkspaceMemberUpdateRole;
+}
+
+export interface WorkspaceInvite {
+  id: number;
+  email: string;
+  role: string;
+  token: string;
+  /** @nullable */
+  acceptedAt?: string | null;
+  expiresAt: string;
+  createdAt: string;
+}
+
+export type WorkspaceInviteInputRole = typeof WorkspaceInviteInputRole[keyof typeof WorkspaceInviteInputRole];
+
+
+export const WorkspaceInviteInputRole = {
+  admin: 'admin',
+  editor: 'editor',
+} as const;
+
+export interface WorkspaceInviteInput {
+  email: string;
+  role?: WorkspaceInviteInputRole;
+}
+
 export interface Comment {
   id: number;
   authorId: number;
@@ -311,6 +406,10 @@ export const ListKnowledgeType = {
 
 export type ListBoardsParams = {
 userId?: number;
+};
+
+export type AcceptWorkspaceInvite200 = {
+  success: boolean;
 };
 
 export type GetTopSkillsParams = {

@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 
+export * from './acceptWorkspaceInvite200';
 export * from './activityItem';
 export * from './activityItemType';
 export * from './boardEntry';
@@ -44,3 +45,14 @@ export * from './userSkillLevel';
 export * from './userSkillUpdate';
 export * from './userSkillUpdateLevel';
 export * from './userUpdate';
+export * from './workspace';
+export * from './workspaceDetail';
+export * from './workspaceInput';
+export * from './workspaceInvite';
+export * from './workspaceInviteInput';
+export * from './workspaceInviteInputRole';
+export * from './workspaceMember';
+export * from './workspaceMemberRole';
+export * from './workspaceMemberUpdate';
+export * from './workspaceMemberUpdateRole';
+export * from './workspaceMemberUser';

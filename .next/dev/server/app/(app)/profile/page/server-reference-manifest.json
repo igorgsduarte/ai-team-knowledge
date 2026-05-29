@@ -1,0 +1,20 @@
+{
+  "node": {
+    "402a434e01c91bc43f94ef98778ab499ab56c7444a": {
+      "workers": {
+        "app/(app)/profile/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/profile/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/profile.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateProfileLocale",
+          "filename": "src/app/actions/profile.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/profile/page": "action-browser"
+      },
+      "exportedName": "updateProfileLocale",
+      "filename": "src/app/actions/profile.ts"
+    }
+  },
+  "edge": {}
+}

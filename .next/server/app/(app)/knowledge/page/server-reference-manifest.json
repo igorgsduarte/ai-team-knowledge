@@ -1,0 +1,35 @@
+{
+  "node": {
+    "4091f4ef0ca0c8d33ed532b164939536a2b434e5a6": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": 3422,
+          "async": true,
+          "exportedName": "createKnowledge",
+          "filename": "src/app/actions/knowledge.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/knowledge/page": "action-browser"
+      },
+      "exportedName": "createKnowledge",
+      "filename": "src/app/actions/knowledge.ts"
+    },
+    "40b12fec7f90cd9c2a4d852df59fea5bfab7ad1abb": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": 3422,
+          "async": true,
+          "exportedName": "deleteKnowledge",
+          "filename": "src/app/actions/knowledge.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/knowledge/page": "action-browser"
+      },
+      "exportedName": "deleteKnowledge",
+      "filename": "src/app/actions/knowledge.ts"
+    }
+  },
+  "edge": {}
+}

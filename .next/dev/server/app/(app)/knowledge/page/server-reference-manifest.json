@@ -1,0 +1,20 @@
+{
+  "node": {
+    "406a3ea59a60bea16dabb114ba074947844d0cf7c7": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createKnowledge",
+          "filename": "src/app/actions/knowledge.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/knowledge/page": "action-browser"
+      },
+      "exportedName": "createKnowledge",
+      "filename": "src/app/actions/knowledge.ts"
+    }
+  },
+  "edge": {}
+}

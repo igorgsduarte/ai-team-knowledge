@@ -1,0 +1,20 @@
+{
+  "node": {
+    "403b200b355fc99b8a3f50201ab8bd577366f06a01": {
+      "workers": {
+        "app/(app)/board/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/board/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/boards.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createBoard",
+          "filename": "src/app/actions/boards.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/board/page": "action-browser"
+      },
+      "exportedName": "createBoard",
+      "filename": "src/app/actions/boards.ts"
+    }
+  },
+  "edge": {}
+}

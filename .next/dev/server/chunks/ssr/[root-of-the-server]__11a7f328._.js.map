@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 28, "column": 0}, "map": {"version":3,"sources":["file:///Users/igor.duarte/workspace/personal/team-ai-knowledge/src/components/sign-out-button.tsx"],"sourcesContent":["\"use client\";\n\nimport { useRouter } from \"next/navigation\";\nimport { useState } from \"react\";\n\nexport function SignOutButton() {\n  const router = useRouter();\n  const [loading, setLoading] = useState(false);\n\n  async function signOut() {\n    setLoading(true);\n    try {\n      await fetch(\"/api/auth/sign-out\", { method: \"POST\" });\n    } finally {\n      router.replace(\"/sign-in\");\n      router.refresh();\n    }\n  }\n\n  return (\n    <button className=\"sidebar-action\" type=\"button\" onClick={signOut} disabled={loading}>\n      <span>Q</span>\n      <strong>{loading ? \"Saindo...\" : \"Sair\"}</strong>\n    </button>\n  );\n}\n"],"names":[],"mappings":";;;;;AAEA;AACA;AAHA;;;;AAKO,SAAS;IACd,MAAM,SAAS,IAAA,sTAAS;IACxB,MAAM,CAAC,SAAS,WAAW,GAAG,IAAA,wXAAQ,EAAC;IAEvC,eAAe;QACb,WAAW;QACX,IAAI;YACF,MAAM,MAAM,sBAAsB;gBAAE,QAAQ;YAAO;QACrD,SAAU;YACR,OAAO,OAAO,CAAC;YACf,OAAO,OAAO;QAChB;IACF;IAEA,qBACE,qZAAC;QAAO,WAAU;QAAiB,MAAK;QAAS,SAAS;QAAS,UAAU;;0BAC3E,qZAAC;0BAAK;;;;;;0BACN,qZAAC;0BAAQ,UAAU,cAAc;;;;;;;;;;;;AAGvC","debugId":null}}]
+}

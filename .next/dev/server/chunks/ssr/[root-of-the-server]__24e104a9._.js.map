@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///Users/igor.duarte/workspace/personal/team-ai-knowledge/src/app/%28auth%29/sign-in/page.tsx"],"sourcesContent":["import Link from \"next/link\";\nimport { SignInForm } from \"./sign-in-form\";\n\nexport default function SignInPage() {\n  return (\n    <main className=\"mx-auto flex min-h-screen w-full max-w-md items-center px-4\">\n      <div className=\"w-full space-y-4\">\n        <SignInForm />\n        <p className=\"text-center text-sm text-gray-600\">\n          Ainda não tem conta? <Link className=\"underline\" href=\"/sign-up\">Criar conta</Link>\n        </p>\n      </div>\n    </main>\n  );\n}\n"],"names":[],"mappings":";;;;;AAAA;;;;;;;;;AAGe,SAAS;IACtB,qBACE,ycAAC;QAAK,WAAU;kBACd,cAAA,ycAAC;YAAI,WAAU;;8BACb,ycAAC;;;;;8BACD,ycAAC;oBAAE,WAAU;;wBAAoC;sCAC1B,ycAAC,qZAAI;4BAAC,WAAU;4BAAY,MAAK;sCAAW;;;;;;;;;;;;;;;;;;;;;;;AAK3E","debugId":null}}]
+}

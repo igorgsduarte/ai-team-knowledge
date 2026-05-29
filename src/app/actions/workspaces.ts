@@ -1,0 +1,1 @@
+"use server"; import { cookies } from "next/headers"; import { requireAuthContext } from "@/lib/firebase/auth"; export async function setActiveWorkspace(workspaceId:string){const auth=await requireAuthContext();const jar=await cookies();jar.set("tk_workspace_id",workspaceId,{httpOnly:true,path:"/"});return {userId:auth.userId,workspaceId};}

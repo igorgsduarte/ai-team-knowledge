@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":["file:///Users/igor.duarte/workspace/personal/team-ai-knowledge/src/app/api/auth/sign-out/route.ts"],"sourcesContent":["import { NextResponse } from \"next/server\";\n\nconst AUTH_COOKIES = [\"__session\", \"tk_user_id\", \"tk_workspace_id\", \"tk_email\", \"tk_auth_token\"];\n\nexport const runtime = \"nodejs\";\n\nexport async function POST() {\n  const response = NextResponse.json({ ok: true });\n\n  for (const name of AUTH_COOKIES) {\n    response.cookies.set(name, \"\", {\n      httpOnly: true,\n      maxAge: 0,\n      path: \"/\",\n      sameSite: \"lax\",\n      secure: process.env.NODE_ENV === \"production\",\n    });\n  }\n\n  return response;\n}\n"],"names":[],"mappings":";;;;;;AAAA;;AAEA,MAAM,eAAe;IAAC;IAAa;IAAc;IAAmB;IAAY;CAAgB;AAEzF,MAAM,UAAU;AAEhB,eAAe;IACpB,MAAM,WAAW,uTAAY,CAAC,IAAI,CAAC;QAAE,IAAI;IAAK;IAE9C,KAAK,MAAM,QAAQ,aAAc;QAC/B,SAAS,OAAO,CAAC,GAAG,CAAC,MAAM,IAAI;YAC7B,UAAU;YACV,QAAQ;YACR,MAAM;YACN,UAAU;YACV,QAAQ,oDAAyB;QACnC;IACF;IAEA,OAAO;AACT","debugId":null}}]
+}

@@ -1,16 +1,33 @@
 {
-  "name": "workspace",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "preinstall": "sh -c 'rm -f package-lock.json yarn.lock; case \"$npm_config_user_agent\" in pnpm/*) ;; *) echo \"Use pnpm instead\" >&2; exit 1 ;; esac'",
-    "build": "pnpm run typecheck && pnpm -r --if-present run build",
-    "typecheck:libs": "tsc --build",
-    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
-  },
+  "name": "team-ai-knowledge",
   "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "seed:demo": "node scripts/seed-demo-acme.mjs",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots"
+  },
+  "dependencies": {
+    "@uiw/react-md-editor": "^4.1.1",
+    "firebase": "^12.4.0",
+    "firebase-admin": "^13.0.0",
+    "lucide-react": "^1.17.0",
+    "next": "16.0.2",
+    "next-intl": "^4.13.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
   "devDependencies": {
-    "prettier": "^3.8.3",
-    "typescript": "~5.9.3"
-  }
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.3.3",
+    "@types/react": "^19.2.0",
+    "typescript": "~5.9.3",
+    "vitest": "^2.1.8"
+  },
+  "packageManager": "pnpm@10.18.2"
 }

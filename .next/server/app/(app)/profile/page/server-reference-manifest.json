@@ -1,0 +1,50 @@
+{
+  "node": {
+    "40454c8959a1813ee2720aa66b09e72daa19d1251b": {
+      "workers": {
+        "app/(app)/profile/page": {
+          "moduleId": 45961,
+          "async": true,
+          "exportedName": "publishAgents",
+          "filename": "src/app/actions/agents.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/profile/page": "action-browser"
+      },
+      "exportedName": "publishAgents",
+      "filename": "src/app/actions/agents.ts"
+    },
+    "4088742f9a2f85e1c901745db69c9babf9852ca8cf": {
+      "workers": {
+        "app/(app)/profile/page": {
+          "moduleId": 45961,
+          "async": true,
+          "exportedName": "updateProfile",
+          "filename": "src/app/actions/profile.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/profile/page": "action-browser"
+      },
+      "exportedName": "updateProfile",
+      "filename": "src/app/actions/profile.ts"
+    },
+    "40437659f3a2ae8cacf928b1b1baa79d90e387c6e7": {
+      "workers": {
+        "app/(app)/profile/page": {
+          "moduleId": 45961,
+          "async": true,
+          "exportedName": "updateProfileLocale",
+          "filename": "src/app/actions/profile.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/profile/page": "action-browser"
+      },
+      "exportedName": "updateProfileLocale",
+      "filename": "src/app/actions/profile.ts"
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,21 @@
+{
+  "/(app)/board/page": "/board",
+  "/(app)/dashboard/page": "/dashboard",
+  "/(app)/knowledge/[id]/page": "/knowledge/[id]",
+  "/(app)/knowledge/page": "/knowledge",
+  "/(app)/profile/page": "/profile",
+  "/(app)/skills/[id]/page": "/skills/[id]",
+  "/(app)/skills/page": "/skills",
+  "/(app)/team/page": "/team",
+  "/(auth)/sign-in/page": "/sign-in",
+  "/(auth)/sign-up/page": "/sign-up",
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/auth/sign-in/route": "/api/auth/sign-in",
+  "/api/auth/sign-out/route": "/api/auth/sign-out",
+  "/api/auth/sign-up/route": "/api/auth/sign-up",
+  "/api/mcp/connect/route": "/api/mcp/connect",
+  "/api/mcp/status/route": "/api/mcp/status",
+  "/api/workspaces/[workspaceId]/agents/route": "/api/workspaces/[workspaceId]/agents",
+  "/page": "/"
+}

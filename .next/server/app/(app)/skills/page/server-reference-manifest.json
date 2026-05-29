@@ -1,0 +1,50 @@
+{
+  "node": {
+    "4002762ae92341392c046e15a5badfb1235ce69e83": {
+      "workers": {
+        "app/(app)/skills/page": {
+          "moduleId": 75891,
+          "async": true,
+          "exportedName": "createSkill",
+          "filename": "src/app/actions/skills.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/skills/page": "action-browser"
+      },
+      "exportedName": "createSkill",
+      "filename": "src/app/actions/skills.ts"
+    },
+    "40e29e435515b47f2a77e49103d2f501fea0ce2f85": {
+      "workers": {
+        "app/(app)/skills/page": {
+          "moduleId": 75891,
+          "async": true,
+          "exportedName": "removeUserSkill",
+          "filename": "src/app/actions/user-skills.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/skills/page": "action-browser"
+      },
+      "exportedName": "removeUserSkill",
+      "filename": "src/app/actions/user-skills.ts"
+    },
+    "40d457d76b1dcb18e803e0e9c9655e4e242a190902": {
+      "workers": {
+        "app/(app)/skills/page": {
+          "moduleId": 75891,
+          "async": true,
+          "exportedName": "addUserSkill",
+          "filename": "src/app/actions/user-skills.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/skills/page": "action-browser"
+      },
+      "exportedName": "addUserSkill",
+      "filename": "src/app/actions/user-skills.ts"
+    }
+  },
+  "edge": {}
+}

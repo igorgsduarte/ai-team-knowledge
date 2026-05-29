@@ -1,0 +1,35 @@
+{
+  "node": {
+    "401c3f82a8db49fdc82bf0b8fe37f03de83dbb8cc0": {
+      "workers": {
+        "app/(app)/board/page": {
+          "moduleId": 80208,
+          "async": true,
+          "exportedName": "createBoard",
+          "filename": "src/app/actions/boards.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/board/page": "action-browser"
+      },
+      "exportedName": "createBoard",
+      "filename": "src/app/actions/boards.ts"
+    },
+    "409f3f7669c1238af456b0265d684ff64e46d45f0a": {
+      "workers": {
+        "app/(app)/board/page": {
+          "moduleId": 80208,
+          "async": true,
+          "exportedName": "deleteBoard",
+          "filename": "src/app/actions/boards.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/board/page": "rsc"
+      },
+      "exportedName": "deleteBoard",
+      "filename": "src/app/actions/boards.ts"
+    }
+  },
+  "edge": {}
+}

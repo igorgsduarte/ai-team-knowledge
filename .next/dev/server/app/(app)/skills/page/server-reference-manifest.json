@@ -1,0 +1,20 @@
+{
+  "node": {
+    "403984dc45d9cbcb9e2d315f9ed9d812a2225dc217": {
+      "workers": {
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createSkill",
+          "filename": "src/app/actions/skills.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/skills/page": "action-browser"
+      },
+      "exportedName": "createSkill",
+      "filename": "src/app/actions/skills.ts"
+    }
+  },
+  "edge": {}
+}

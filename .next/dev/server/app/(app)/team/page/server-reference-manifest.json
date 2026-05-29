@@ -1,0 +1,35 @@
+{
+  "node": {
+    "4063171db3278eaa69e5a92218c5755cee1dfbf517": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/mcp-keys.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/mcp-connections.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createMcpKey",
+          "filename": "src/app/actions/mcp-keys.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/team/page": "action-browser"
+      },
+      "exportedName": "createMcpKey",
+      "filename": "src/app/actions/mcp-keys.ts"
+    },
+    "404d0b14bf5caac7eb9e05768bc1f502e840055580": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/mcp-keys.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/mcp-connections.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "setMcpEnabled",
+          "filename": "src/app/actions/mcp-connections.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/team/page": "action-browser"
+      },
+      "exportedName": "setMcpEnabled",
+      "filename": "src/app/actions/mcp-connections.ts"
+    }
+  },
+  "edge": {}
+}

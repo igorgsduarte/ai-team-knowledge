@@ -1,0 +1,51 @@
+{
+  "node": {
+    "406a3ea59a60bea16dabb114ba074947844d0cf7c7": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createKnowledge",
+          "filename": "src/app/actions/knowledge.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/knowledge/page": "action-browser"
+      },
+      "filename": "src/app/actions/knowledge.ts",
+      "exportedName": "createKnowledge"
+    },
+    "403b200b355fc99b8a3f50201ab8bd577366f06a01": {
+      "workers": {
+        "app/(app)/board/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/board/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/boards.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createBoard",
+          "filename": "src/app/actions/boards.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/board/page": "action-browser"
+      },
+      "filename": "src/app/actions/boards.ts",
+      "exportedName": "createBoard"
+    },
+    "403984dc45d9cbcb9e2d315f9ed9d812a2225dc217": {
+      "workers": {
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createSkill",
+          "filename": "src/app/actions/skills.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/skills/page": "action-browser"
+      },
+      "filename": "src/app/actions/skills.ts",
+      "exportedName": "createSkill"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "D0iHH1EZIkeO0Cp0PyVrPAnuaYEnpvqrF9eF8PbGjGc="
+}

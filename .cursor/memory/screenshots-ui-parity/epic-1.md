@@ -6,16 +6,16 @@ todos:
     status: completed
   - id: T1.2
     content: "Criar componente Drawer reutilizável"
-    status: pending
+    status: completed
   - id: T1.3
     content: "Criar MarkdownEditor com @uiw/react-md-editor"
-    status: pending
+    status: completed
   - id: T1.4
     content: "Refatorar AppShell e cabeçalho de página"
-    status: pending
+    status: completed
   - id: T1.5
     content: "Criar primitivos visuais compartilhados"
-    status: pending
+    status: completed
 decisions: D-01, D-02, D-03, D-05
 goal: "Shell e primitivos UI alinhados aos screenshots, prontos para composição das páginas"
 ---
@@ -46,7 +46,7 @@ goal: "Shell e primitivos UI alinhados aos screenshots, prontos para composiçã
   done: "globals.css expõe tokens claros e classes de layout/card compatíveis com os screenshots"
   ```
 
-- [ ] **T1.2** — Criar componente Drawer reutilizável
+- [x] **T1.2** — Criar componente Drawer reutilizável
 
   ```yaml
   id: T1.2
@@ -65,7 +65,7 @@ goal: "Shell e primitivos UI alinhados aos screenshots, prontos para composiçã
   done: "Componente Drawer exportado e utilizável por formulários de criação"
   ```
 
-- [ ] **T1.3** — Criar MarkdownEditor com @uiw/react-md-editor
+- [x] **T1.3** — Criar MarkdownEditor com @uiw/react-md-editor
 
   ```yaml
   id: T1.3
@@ -84,7 +84,7 @@ goal: "Shell e primitivos UI alinhados aos screenshots, prontos para composiçã
   done: "MarkdownEditor reutilizável exportado com API controlada value/onChange"
   ```
 
-- [ ] **T1.4** — Refatorar AppShell e cabeçalho de página
+- [x] **T1.4** — Refatorar AppShell e cabeçalho de página
 
   ```yaml
   id: T1.4
@@ -111,7 +111,7 @@ goal: "Shell e primitivos UI alinhados aos screenshots, prontos para composiçã
   done: "AppShell reflete screenshots de sidebar; PageHeader disponível para páginas"
   ```
 
-- [ ] **T1.5** — Criar primitivos visuais compartilhados
+- [x] **T1.5** — Criar primitivos visuais compartilhados
 
   ```yaml
   id: T1.5

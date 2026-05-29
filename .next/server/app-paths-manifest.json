@@ -1,0 +1,21 @@
+{
+  "/(app)/board/page": "app/(app)/board/page.js",
+  "/(app)/dashboard/page": "app/(app)/dashboard/page.js",
+  "/(app)/knowledge/[id]/page": "app/(app)/knowledge/[id]/page.js",
+  "/(app)/knowledge/page": "app/(app)/knowledge/page.js",
+  "/(app)/profile/page": "app/(app)/profile/page.js",
+  "/(app)/skills/[id]/page": "app/(app)/skills/[id]/page.js",
+  "/(app)/skills/page": "app/(app)/skills/page.js",
+  "/(app)/team/page": "app/(app)/team/page.js",
+  "/(auth)/sign-in/page": "app/(auth)/sign-in/page.js",
+  "/(auth)/sign-up/page": "app/(auth)/sign-up/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/auth/sign-in/route": "app/api/auth/sign-in/route.js",
+  "/api/auth/sign-out/route": "app/api/auth/sign-out/route.js",
+  "/api/auth/sign-up/route": "app/api/auth/sign-up/route.js",
+  "/api/mcp/connect/route": "app/api/mcp/connect/route.js",
+  "/api/mcp/status/route": "app/api/mcp/status/route.js",
+  "/api/workspaces/[workspaceId]/agents/route": "app/api/workspaces/[workspaceId]/agents/route.js",
+  "/page": "app/page.js"
+}

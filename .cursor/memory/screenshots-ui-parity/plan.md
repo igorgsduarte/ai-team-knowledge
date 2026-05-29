@@ -1,26 +1,26 @@
 ---
 name: "screenshots-ui-parity"
-status: planning complete
+status: implementation complete
 overview: "Implementar paridade visual/comportamental com os screenshots anexados: tema claro, Board como home, drawers com markdown editor, seed demo e validação Playwright."
 todos:
   - id: epic-1
     content: "Tokens, shell e primitivos UI"
-    status: in_progress
+    status: completed
   - id: epic-2
     content: "Domínio, repositórios e seed demo"
-    status: pending
+    status: completed
   - id: epic-3
     content: "Board — página principal"
-    status: pending
+    status: completed
   - id: epic-4
     content: "Knowledge e Skills"
-    status: pending
+    status: completed
   - id: epic-5
     content: "Team, Profile e Agent drawer"
-    status: pending
+    status: completed
   - id: epic-6
     content: "Rotas, i18n e validação Playwright"
-    status: pending
+    status: completed
 epics:
   - id: epic-1
     file: ./epic-1.md

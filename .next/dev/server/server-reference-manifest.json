@@ -1,49 +1,436 @@
 {
   "node": {
+    "0060e0ba0bc2386cbeb268e861bd63b7874011af36": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/workspace/settings/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-settings.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "restoreWorkspace",
+          "filename": "src/app/actions/workspace-settings.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-settings.ts",
+      "exportedName": "restoreWorkspace"
+    },
+    "0071a06c840965d55324a5dbf3fb5da17a60c00f09": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/workspace/settings/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-settings.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "requestWorkspaceDeletion",
+          "filename": "src/app/actions/workspace-settings.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-settings.ts",
+      "exportedName": "requestWorkspaceDeletion"
+    },
+    "00f705aae61319348dd71830100f34f84e91e80e4e": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/workspace/settings/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-settings.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "getWorkspaceStats",
+          "filename": "src/app/actions/workspace-settings.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-settings.ts",
+      "exportedName": "getWorkspaceStats"
+    },
+    "40b2affd1d1a73f045ead39db48dbca464d8f1a783": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/workspace/settings/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-settings.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "renameWorkspace",
+          "filename": "src/app/actions/workspace-settings.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-settings.ts",
+      "exportedName": "renameWorkspace"
+    },
+    "00e49e4ccca9948f791d83f48be7ada17a3c1a1992": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "listWorkspaceInvites",
+          "filename": "src/app/actions/workspace-invites.ts"
+        },
+        "app/(app)/workspace/settings/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/workspace/settings/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-settings.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "listWorkspaceInvites",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-invites.ts",
+      "exportedName": "listWorkspaceInvites"
+    },
+    "40920471fe7af9e3db73ed2bdcf37d36b4b758af6e": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        },
+        "app/(app)/workspace/settings/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/workspace/settings/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-settings.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-invites.ts",
+      "exportedName": "createWorkspaceInvite"
+    },
+    "409c7d0c9ae91b04caec0eba0a275722b32c131ab3": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "acceptWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        },
+        "app/(app)/workspace/settings/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/workspace/settings/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-settings.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "acceptWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-invites.ts",
+      "exportedName": "acceptWorkspaceInvite"
+    },
+    "40f76ab7c6c89d66b18c2eeada6bfb8f747d2e8c48": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "revokeWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        },
+        "app/(app)/workspace/settings/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/workspace/settings/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-settings.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "revokeWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-invites.ts",
+      "exportedName": "revokeWorkspaceInvite"
+    },
     "406a3ea59a60bea16dabb114ba074947844d0cf7c7": {
       "workers": {
         "app/(app)/knowledge/page": {
-          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": true,
           "exportedName": "createKnowledge",
           "filename": "src/app/actions/knowledge.ts"
         }
       },
-      "layer": {
-        "app/(app)/knowledge/page": "action-browser"
-      },
       "filename": "src/app/actions/knowledge.ts",
       "exportedName": "createKnowledge"
     },
-    "403b200b355fc99b8a3f50201ab8bd577366f06a01": {
+    "40ca85d2a23cfd2baba4bf8344d9aacdbb2dd3a1bb": {
       "workers": {
-        "app/(app)/board/page": {
-          "moduleId": "[project]/.next-internal/server/app/(app)/board/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/boards.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": true,
-          "exportedName": "createBoard",
-          "filename": "src/app/actions/boards.ts"
+          "exportedName": "deleteKnowledge",
+          "filename": "src/app/actions/knowledge.ts"
         }
       },
-      "layer": {
-        "app/(app)/board/page": "action-browser"
+      "filename": "src/app/actions/knowledge.ts",
+      "exportedName": "deleteKnowledge"
+    },
+    "40e6824c7c9d35daa2f408d6b111e32c9b3418c9d5": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "getKnowledgeContent",
+          "filename": "src/app/actions/knowledge.ts"
+        }
       },
-      "filename": "src/app/actions/boards.ts",
-      "exportedName": "createBoard"
+      "filename": "src/app/actions/knowledge.ts",
+      "exportedName": "getKnowledgeContent"
+    },
+    "606196f07a5a51f9350a5d7e590762099505ac330a": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateKnowledge",
+          "filename": "src/app/actions/knowledge.ts"
+        }
+      },
+      "filename": "src/app/actions/knowledge.ts",
+      "exportedName": "updateKnowledge"
+    },
+    "4068d134b466b5984c680612c8a0414c66919021c6": {
+      "workers": {
+        "app/(app)/agents/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/agents/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/agents.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createComment",
+          "filename": "src/app/actions/comments.ts"
+        },
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createComment",
+          "filename": "src/app/actions/comments.ts"
+        },
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/user-skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createComment",
+          "filename": "src/app/actions/comments.ts"
+        }
+      },
+      "filename": "src/app/actions/comments.ts",
+      "exportedName": "createComment"
+    },
+    "40c25d1c4d1cb28b3effb138e2ea6e7d17ae92657d": {
+      "workers": {
+        "app/(app)/agents/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/agents/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/agents.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "deleteComment",
+          "filename": "src/app/actions/comments.ts"
+        },
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "deleteComment",
+          "filename": "src/app/actions/comments.ts"
+        },
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/user-skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "deleteComment",
+          "filename": "src/app/actions/comments.ts"
+        }
+      },
+      "filename": "src/app/actions/comments.ts",
+      "exportedName": "deleteComment"
+    },
+    "60e01483af047098229f6c62fe6d565b5203a4af97": {
+      "workers": {
+        "app/(app)/agents/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/agents/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/agents.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "listComments",
+          "filename": "src/app/actions/comments.ts"
+        },
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "listComments",
+          "filename": "src/app/actions/comments.ts"
+        },
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/user-skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "listComments",
+          "filename": "src/app/actions/comments.ts"
+        }
+      },
+      "filename": "src/app/actions/comments.ts",
+      "exportedName": "listComments"
+    },
+    "60b0b2c97d05b41705d3bf84c63a3f5a99618e1b89": {
+      "workers": {
+        "app/(app)/agents/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/agents/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/agents.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateComment",
+          "filename": "src/app/actions/comments.ts"
+        },
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateComment",
+          "filename": "src/app/actions/comments.ts"
+        },
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/user-skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateComment",
+          "filename": "src/app/actions/comments.ts"
+        }
+      },
+      "filename": "src/app/actions/comments.ts",
+      "exportedName": "updateComment"
     },
     "403984dc45d9cbcb9e2d315f9ed9d812a2225dc217": {
       "workers": {
         "app/(app)/skills/page": {
-          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/user-skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": true,
           "exportedName": "createSkill",
           "filename": "src/app/actions/skills.ts"
         }
       },
-      "layer": {
-        "app/(app)/skills/page": "action-browser"
-      },
       "filename": "src/app/actions/skills.ts",
       "exportedName": "createSkill"
+    },
+    "407a7039e5ed05551294a7b080a2e142cc950c965d": {
+      "workers": {
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/user-skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "removeUserSkill",
+          "filename": "src/app/actions/user-skills.ts"
+        }
+      },
+      "filename": "src/app/actions/user-skills.ts",
+      "exportedName": "removeUserSkill"
+    },
+    "40fbfc7f1b4598a952b05129ab3d9489c8db4938ac": {
+      "workers": {
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/user-skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "getSkillContent",
+          "filename": "src/app/actions/skills.ts"
+        }
+      },
+      "filename": "src/app/actions/skills.ts",
+      "exportedName": "getSkillContent"
+    },
+    "6052d490c6ac5b37e8ed4ccfe2460ebeda3e136e94": {
+      "workers": {
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/user-skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateSkill",
+          "filename": "src/app/actions/skills.ts"
+        }
+      },
+      "filename": "src/app/actions/skills.ts",
+      "exportedName": "updateSkill"
+    },
+    "40273b63501384c81d6e44af9441160844f0a32458": {
+      "workers": {
+        "app/(app)/skills/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/skills/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/user-skills.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE2 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "addUserSkill",
+          "filename": "src/app/actions/user-skills.ts"
+        }
+      },
+      "filename": "src/app/actions/user-skills.ts",
+      "exportedName": "addUserSkill"
+    },
+    "40eca1c75d3823238fa582a3cad3f856b5f6f8faef": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "sendWorkspaceInvites",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "filename": "src/app/actions/team-members.ts",
+      "exportedName": "sendWorkspaceInvites"
+    },
+    "40e86c72d686549314610ef11bfa222b03a426b040": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "removeWorkspaceMember",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "filename": "src/app/actions/team-members.ts",
+      "exportedName": "removeWorkspaceMember"
+    },
+    "60375154d21ac34285e783bb686789eba3c880d09d": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "setWorkspaceMemberStatus",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "filename": "src/app/actions/team-members.ts",
+      "exportedName": "setWorkspaceMemberStatus"
+    },
+    "607f459f2d6db41e1eb1205461e013621b278eac7f": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateWorkspaceMemberRole",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "filename": "src/app/actions/team-members.ts",
+      "exportedName": "updateWorkspaceMemberRole"
+    },
+    "60dae6552d612eeb00426ee71c6157e5f2b76fdaf5": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateWorkspaceMemberProfile",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "filename": "src/app/actions/team-members.ts",
+      "exportedName": "updateWorkspaceMemberProfile"
+    },
+    "400c5d36900c8df1cb15753bdb8064051877a1ab54": {
+      "workers": {
+        "app/(app)/agents/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/agents/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/agents.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createAgent",
+          "filename": "src/app/actions/agents.ts"
+        }
+      },
+      "filename": "src/app/actions/agents.ts",
+      "exportedName": "createAgent"
+    },
+    "4004dd15f09de00ef560eafe2f4da1b2c400da3ff8": {
+      "workers": {
+        "app/(app)/agents/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/agents/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/agents.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "deleteAgent",
+          "filename": "src/app/actions/agents.ts"
+        }
+      },
+      "filename": "src/app/actions/agents.ts",
+      "exportedName": "deleteAgent"
+    },
+    "409cab6df589778bd81d1a32a602c3509edb7403a9": {
+      "workers": {
+        "app/(app)/agents/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/agents/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/agents.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "getAgentContent",
+          "filename": "src/app/actions/agents.ts"
+        }
+      },
+      "filename": "src/app/actions/agents.ts",
+      "exportedName": "getAgentContent"
+    },
+    "60b1118f98a04201011bb81a5a5a8615900be2b496": {
+      "workers": {
+        "app/(app)/agents/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/agents/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/agents.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateAgent",
+          "filename": "src/app/actions/agents.ts"
+        }
+      },
+      "filename": "src/app/actions/agents.ts",
+      "exportedName": "updateAgent"
     }
   },
   "edge": {},

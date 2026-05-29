@@ -8,7 +8,6 @@ export const firestoreCollections = {
   users: "users",
   workspaces: "workspaces",
   memberships: "memberships",
-  boards: "boards",
   knowledge: "knowledge",
   skills: "skills",
   userSkills: "userSkills",
@@ -17,4 +16,5 @@ export const firestoreCollections = {
   agents: "agents",
   mcpKeys: "mcp_keys",
   mcpWorkspaceSettings: "mcp_workspace_settings",
+  workspaceInvites: "workspace_invites",
 } as const;

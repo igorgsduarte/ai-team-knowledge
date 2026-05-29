@@ -9,9 +9,6 @@
           "filename": "src/app/actions/agents.ts"
         }
       },
-      "layer": {
-        "app/(app)/profile/page": "action-browser"
-      },
       "exportedName": "publishAgents",
       "filename": "src/app/actions/agents.ts"
     },
@@ -24,9 +21,6 @@
           "filename": "src/app/actions/profile.ts"
         }
       },
-      "layer": {
-        "app/(app)/profile/page": "action-browser"
-      },
       "exportedName": "updateProfile",
       "filename": "src/app/actions/profile.ts"
     },
@@ -38,9 +32,6 @@
           "exportedName": "updateProfileLocale",
           "filename": "src/app/actions/profile.ts"
         }
-      },
-      "layer": {
-        "app/(app)/profile/page": "action-browser"
       },
       "exportedName": "updateProfileLocale",
       "filename": "src/app/actions/profile.ts"

@@ -15,7 +15,7 @@ export function SignOutButton() {
     try {
       await fetch("/api/auth/sign-out", { method: "POST" });
     } finally {
-      router.replace("/sign-in");
+      router.replace("/");
       router.refresh();
     }
   }

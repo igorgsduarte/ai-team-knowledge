@@ -1,6 +1,10 @@
 {
-  "/(app)/board/page": "app/(app)/board/page.js",
-  "/(app)/dashboard/page": "app/(app)/dashboard/page.js",
+  "/(app)/agents/page": "app/(app)/agents/page.js",
   "/(app)/knowledge/page": "app/(app)/knowledge/page.js",
-  "/(app)/skills/page": "app/(app)/skills/page.js"
+  "/(app)/skills/page": "app/(app)/skills/page.js",
+  "/(app)/team/page": "app/(app)/team/page.js",
+  "/(app)/workspace/settings/page": "app/(app)/workspace/settings/page.js",
+  "/api/auth/clear-session/route": "app/api/auth/clear-session/route.js",
+  "/api/auth/sign-in/route": "app/api/auth/sign-in/route.js",
+  "/page": "app/page.js"
 }

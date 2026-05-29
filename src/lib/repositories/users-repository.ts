@@ -1,5 +1,7 @@
+import "server-only";
 import { firestoreCollections, getFirestoreDb } from "@/lib/firebase/firestore";
 import type { AppLocale } from "@/i18n/locales";
+import type { WorkspaceMember, WorkspaceMemberRole, WorkspaceMemberStatus } from "@/lib/types/domain";
 
 export interface UserProfile {
   area?: string;
@@ -9,6 +11,12 @@ export interface UserProfile {
   id: string;
   locale?: AppLocale;
   name?: string;
+  updatedAt?: string;
+}
+
+export interface WorkspaceUserProfile extends UserProfile {
+  role: WorkspaceMemberRole;
+  status: WorkspaceMemberStatus;
 }
 
 export const usersRepository = {
@@ -22,15 +30,29 @@ export const usersRepository = {
     return { id: userId, ...data };
   },
 
-  async getUsersByWorkspace(workspaceId: string): Promise<UserProfile[]> {
+  async getUsersByWorkspace(workspaceId: string): Promise<WorkspaceUserProfile[]> {
     const workspaceDoc = await getFirestoreDb().collection(firestoreCollections.workspaces).doc(workspaceId).get();
     if (!workspaceDoc.exists) {
       return [];
     }
 
-    const members = (workspaceDoc.data()?.members ?? []) as Array<{ userId: string }>;
-    const profiles = await Promise.all(members.map((member) => this.getUserProfile(member.userId)));
-    return profiles.filter((profile): profile is UserProfile => Boolean(profile));
+    const members = (workspaceDoc.data()?.members ?? []) as WorkspaceMember[];
+    const profiles = await Promise.all(
+      members.map(async (member) => {
+        const profile = await this.getUserProfile(member.userId);
+        if (!profile) {
+          return null;
+        }
+
+        return {
+          ...profile,
+          role: member.role,
+          status: member.status ?? "active",
+        } satisfies WorkspaceUserProfile;
+      })
+    );
+
+    return profiles.filter((profile): profile is WorkspaceUserProfile => Boolean(profile));
   },
 
   async updateUserLocale(userId: string, locale: AppLocale): Promise<void> {

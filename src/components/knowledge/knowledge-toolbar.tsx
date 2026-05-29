@@ -1,47 +1,55 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import type { KnowledgeItem, KnowledgeType } from "@/lib/types/domain";
+import { EntityListToolbar } from "@/components/ui/entity-list-toolbar";
+import type { AuthorOption } from "@/lib/entity-list-filters";
+import type { KnowledgeType } from "@/lib/types/domain";
 
 type KnowledgeToolbarProps = {
-  items: KnowledgeItem[];
-  onFiltered: (items: KnowledgeItem[]) => void;
+  authorId: string;
+  authors: AuthorOption[];
+  onAuthorChange: (authorId: string) => void;
+  onQueryChange: (query: string) => void;
+  onTagChange: (tag: string) => void;
+  onTypeChange: (type: "all" | KnowledgeType) => void;
+  query: string;
+  tag: string;
+  tags: string[];
+  type: "all" | KnowledgeType;
 };
 
-export function KnowledgeToolbar({ items, onFiltered }: KnowledgeToolbarProps) {
+export function KnowledgeToolbar({
+  authorId,
+  authors,
+  onAuthorChange,
+  onQueryChange,
+  onTagChange,
+  onTypeChange,
+  query,
+  tag,
+  tags,
+  type,
+}: KnowledgeToolbarProps) {
   const t = useTranslations("Knowledge");
-  const [query, setQuery] = useState("");
-  const [type, setType] = useState<"all" | KnowledgeType>("all");
-
-  useEffect(() => {
-    const normalized = query.trim().toLowerCase();
-    const next = items.filter((item) => {
-      const matchesType = type === "all" || (item.type ?? "article") === type;
-      if (!matchesType) {
-        return false;
-      }
-      if (!normalized) {
-        return true;
-      }
-      const haystack = `${item.title} ${item.body} ${item.tags.join(" ")}`.toLowerCase();
-      return haystack.includes(normalized);
-    });
-    onFiltered(next);
-  }, [items, onFiltered, query, type]);
 
   return (
-    <div className="knowledge-toolbar">
-      <input
-        onChange={(event) => setQuery(event.target.value)}
-        placeholder={t("searchPlaceholder")}
-        value={query}
-      />
-      <select onChange={(event) => setType(event.target.value as "all" | KnowledgeType)} value={type}>
-        <option value="all">{t("filterAll")}</option>
-        <option value="link">{t("filterLink")}</option>
-        <option value="article">{t("filterArticle")}</option>
-      </select>
-    </div>
+    <EntityListToolbar
+      authorId={authorId}
+      authors={authors}
+      extraFilters={
+        <select onChange={(event) => onTypeChange(event.target.value as "all" | KnowledgeType)} value={type}>
+          <option value="all">{t("filterAll")}</option>
+          <option value="link">{t("filterLink")}</option>
+          <option value="article">{t("filterArticle")}</option>
+        </select>
+      }
+      onAuthorChange={onAuthorChange}
+      onQueryChange={onQueryChange}
+      onTagChange={onTagChange}
+      query={query}
+      searchPlaceholder={t("searchPlaceholder")}
+      tag={tag}
+      tags={tags}
+    />
   );
 }

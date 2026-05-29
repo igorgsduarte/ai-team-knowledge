@@ -1,7 +1,7 @@
 # Session: firebase-storage-governance-workspace-settings
 
 Current task: —
-Status: planning complete — aprovado pelo Human
+Status: implementation complete
 
 ## Decisions made
 
@@ -14,3 +14,5 @@ Status: planning complete — aprovado pelo Human
 ## History
 
 - 2026-05-29: Intake e discovery; decisões Human via AskQuestion.
+- 2026-05-29: T1.1 — storage-policy.ts, workspace-lifecycle.ts, storage-governance.test.ts.
+- 2026-05-29: Épicos 1–4 implementados (rules, settings UI, CF purge, testes).

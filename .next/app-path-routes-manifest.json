@@ -7,6 +7,8 @@
   "/(app)/skills/[id]/page": "/skills/[id]",
   "/(app)/skills/page": "/skills",
   "/(app)/team/page": "/team",
+  "/(app)/workspace/settings/page": "/workspace/settings",
+  "/(auth)/invite/[token]/page": "/invite/[token]",
   "/(auth)/sign-in/page": "/sign-in",
   "/(auth)/sign-up/page": "/sign-up",
   "/_global-error/page": "/_global-error",

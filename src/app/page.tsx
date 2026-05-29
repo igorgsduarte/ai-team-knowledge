@@ -9,7 +9,6 @@ const demoUsers = [
 ] as const;
 
 const features = [
-  { titleKey: "featureBoardTitle", descriptionKey: "featureBoardDescription" },
   { titleKey: "featureKnowledgeTitle", descriptionKey: "featureKnowledgeDescription" },
   { titleKey: "featureSkillsTitle", descriptionKey: "featureSkillsDescription" },
 ] as const;
@@ -42,7 +41,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="grid gap-4 sm:grid-cols-3">
+      <section className="grid gap-4 sm:grid-cols-2">
         {features.map((feature) => (
           <article key={feature.titleKey} className="rounded border bg-white p-4">
             <h2 className="font-semibold">{t(feature.titleKey)}</h2>

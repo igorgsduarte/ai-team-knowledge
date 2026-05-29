@@ -4,8 +4,10 @@ import { PageHeader } from "@/components/page-header";
 import { SkillCreateDrawer } from "@/components/skills/skill-create-drawer";
 import { SkillsPageClient } from "@/components/skills/skills-page-client";
 import { getAuthContext } from "@/lib/firebase/auth";
+import { commentsRepository } from "@/lib/repositories/comments-repository";
 import { skillsRepository } from "@/lib/repositories/skills-repository";
 import { userSkillsRepository } from "@/lib/repositories/user-skills-repository";
+import { usersRepository } from "@/lib/repositories/users-repository";
 
 export default async function Page() {
   const common = await getTranslations("Common");
@@ -20,15 +22,23 @@ export default async function Page() {
 
   const t = await getTranslations("Skills");
   const skills = await skillsRepository.list(auth.workspaceId);
+  const members = await usersRepository.getUsersByWorkspace(auth.workspaceId);
+  const authorNames: Record<string, string> = Object.fromEntries(
+    members.map((member) => [member.id, member.name ?? t("unknownAuthor")])
+  );
   const userSkills = await userSkillsRepository.listByUser(auth.workspaceId, auth.userId);
   const userSkillBySkillId = Object.fromEntries(
     userSkills.map((userSkill) => [userSkill.skillId, userSkill])
   );
 
   const memberCounts: Record<string, number> = {};
-  await Promise.all(
+  const cards = await Promise.all(
     skills.map(async (skill) => {
       memberCounts[skill.id] = await userSkillsRepository.countBySkill(auth.workspaceId, skill.id);
+      const commentCount = (
+        await commentsRepository.listByEntity(auth.workspaceId, "skill", skill.id)
+      ).length;
+      return { commentCount, skill };
     })
   );
 
@@ -37,8 +47,10 @@ export default async function Page() {
       <div className="content-stack space-y-6">
         <PageHeader actions={<SkillCreateDrawer />} subtitle={t("subtitle")} title={t("pageTitle")} />
         <SkillsPageClient
+          authorNames={authorNames}
+          cards={cards}
+          currentUserId={auth.userId}
           memberCounts={memberCounts}
-          skills={skills}
           userSkillBySkillId={userSkillBySkillId}
           userSkills={userSkills}
         />

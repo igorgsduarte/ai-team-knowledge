@@ -25,7 +25,7 @@ export async function updateProfileLocale(locale: string): Promise<{ ok: boolean
   });
 
   revalidatePath("/profile");
-  revalidatePath("/board");
+  revalidatePath("/knowledge");
   return { ok: true, locale: nextLocale };
 }
 

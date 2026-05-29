@@ -23,6 +23,9 @@ export default async function Page() {
   const items = await knowledgeRepository.list(auth.workspaceId);
   const members = await usersRepository.getUsersByWorkspace(auth.workspaceId);
   const memberMap = new Map(members.map((member) => [member.id, member]));
+  const authorNames: Record<string, string> = Object.fromEntries(
+    members.map((member) => [member.id, member.name ?? t("unknownAuthor")])
+  );
 
   const cards = await Promise.all(
     items.map(async (item) => ({
@@ -36,7 +39,7 @@ export default async function Page() {
     <AppShell section="knowledge">
       <div className="content-stack space-y-6">
         <PageHeader actions={<KnowledgeCreateDrawer />} subtitle={t("subtitle")} title={t("pageTitle")} />
-        <KnowledgePageClient cards={cards} />
+        <KnowledgePageClient authorNames={authorNames} cards={cards} currentUserId={auth.userId} />
       </div>
     </AppShell>
   );

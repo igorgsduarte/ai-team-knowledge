@@ -1,34 +1,112 @@
 {
   "node": {
-    "4063171db3278eaa69e5a92218c5755cee1dfbf517": {
+    "00e49e4ccca9948f791d83f48be7ada17a3c1a1992": {
       "workers": {
         "app/(app)/team/page": {
-          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/mcp-keys.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/mcp-connections.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": true,
-          "exportedName": "createMcpKey",
-          "filename": "src/app/actions/mcp-keys.ts"
+          "exportedName": "listWorkspaceInvites",
+          "filename": "src/app/actions/workspace-invites.ts"
         }
       },
-      "layer": {
-        "app/(app)/team/page": "action-browser"
-      },
-      "exportedName": "createMcpKey",
-      "filename": "src/app/actions/mcp-keys.ts"
+      "exportedName": "listWorkspaceInvites",
+      "filename": "src/app/actions/workspace-invites.ts"
     },
-    "404d0b14bf5caac7eb9e05768bc1f502e840055580": {
+    "40920471fe7af9e3db73ed2bdcf37d36b4b758af6e": {
       "workers": {
         "app/(app)/team/page": {
-          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/mcp-keys.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/mcp-connections.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": true,
-          "exportedName": "setMcpEnabled",
-          "filename": "src/app/actions/mcp-connections.ts"
+          "exportedName": "createWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
         }
       },
-      "layer": {
-        "app/(app)/team/page": "action-browser"
+      "exportedName": "createWorkspaceInvite",
+      "filename": "src/app/actions/workspace-invites.ts"
+    },
+    "409c7d0c9ae91b04caec0eba0a275722b32c131ab3": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "acceptWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
       },
-      "exportedName": "setMcpEnabled",
-      "filename": "src/app/actions/mcp-connections.ts"
+      "exportedName": "acceptWorkspaceInvite",
+      "filename": "src/app/actions/workspace-invites.ts"
+    },
+    "40f76ab7c6c89d66b18c2eeada6bfb8f747d2e8c48": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "revokeWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
+      },
+      "exportedName": "revokeWorkspaceInvite",
+      "filename": "src/app/actions/workspace-invites.ts"
+    },
+    "40eca1c75d3823238fa582a3cad3f856b5f6f8faef": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "sendWorkspaceInvites",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "exportedName": "sendWorkspaceInvites",
+      "filename": "src/app/actions/team-members.ts"
+    },
+    "40e86c72d686549314610ef11bfa222b03a426b040": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "removeWorkspaceMember",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "exportedName": "removeWorkspaceMember",
+      "filename": "src/app/actions/team-members.ts"
+    },
+    "60375154d21ac34285e783bb686789eba3c880d09d": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "setWorkspaceMemberStatus",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "exportedName": "setWorkspaceMemberStatus",
+      "filename": "src/app/actions/team-members.ts"
+    },
+    "607f459f2d6db41e1eb1205461e013621b278eac7f": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateWorkspaceMemberRole",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "exportedName": "updateWorkspaceMemberRole",
+      "filename": "src/app/actions/team-members.ts"
+    },
+    "60dae6552d612eeb00426ee71c6157e5f2b76fdaf5": {
+      "workers": {
+        "app/(app)/team/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/team/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/workspace-invites.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/team-members.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateWorkspaceMemberProfile",
+          "filename": "src/app/actions/team-members.ts"
+        }
+      },
+      "exportedName": "updateWorkspaceMemberProfile",
+      "filename": "src/app/actions/team-members.ts"
     }
   },
   "edge": {}

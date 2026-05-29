@@ -56,7 +56,7 @@ function DemoLoginCard({ label, name, email, password }) {
             if (!response.ok || !payload.ok) {
                 throw new Error(payload.error || t("demoError"));
             }
-            router.replace("/dashboard");
+            router.replace("/board");
             router.refresh();
         } catch (err) {
             setError(err instanceof Error ? err.message : t("demoError"));

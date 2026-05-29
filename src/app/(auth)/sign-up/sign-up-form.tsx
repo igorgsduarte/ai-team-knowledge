@@ -28,7 +28,7 @@ export function SignUpForm() {
         throw new Error(payload.error || t("signUpError"));
       }
 
-      router.replace("/board");
+      router.replace("/knowledge");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : t("signUpError"));

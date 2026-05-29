@@ -26,16 +26,16 @@ export function KnowledgeCreateDrawer() {
       <button className="primary-button" onClick={() => setOpen(true)} type="button">
         {t("newEntry")}
       </button>
-      <Drawer onOpenChange={setOpen} open={open} title={t("drawerTitle")}>
+      <Drawer onOpenChange={setOpen} open={open} size="wide" title={t("drawerTitle")}>
         <form action={onSubmit} className="drawer-form">
           <label>
             {t("fieldTitle")}
             <input name="title" placeholder={t("titlePlaceholder")} required />
           </label>
-          <label>
-            {t("fieldBody")}
+          <div className="entity-drawer-field">
+            <span className="entity-drawer-field-label">{t("fieldBody")}</span>
             <MarkdownEditor onChange={setBody} value={body} />
-          </label>
+          </div>
           <label>
             {t("fieldType")}
             <select defaultValue="article" name="type">

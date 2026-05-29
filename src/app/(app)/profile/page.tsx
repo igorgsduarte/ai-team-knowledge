@@ -1,13 +1,11 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { AppShell } from "@/components/app-shell";
-import { AgentsEditDrawer } from "@/components/agents/agents-edit-drawer";
 import { PageHeader } from "@/components/page-header";
 import { ProfileInfoCard } from "@/components/profile/profile-info-card";
 import { ProfileSkillsCard } from "@/components/profile/profile-skills-card";
 import { ProfileLanguageForm } from "@/components/profile-language-form";
 import { normalizeLocale, type AppLocale } from "@/i18n/locales";
 import { getAuthContext } from "@/lib/firebase/auth";
-import { agentsRepository } from "@/lib/repositories/agents-repository";
 import { skillsRepository } from "@/lib/repositories/skills-repository";
 import { userSkillsRepository } from "@/lib/repositories/user-skills-repository";
 import { usersRepository } from "@/lib/repositories/users-repository";
@@ -38,7 +36,6 @@ export default async function ProfilePage() {
   const currentLocale = normalizeLocale(profile.locale) ?? locale;
   const skills = await skillsRepository.list(auth.workspaceId);
   const userSkills = await userSkillsRepository.listByUser(auth.workspaceId, auth.userId);
-  const agentsContent = (await agentsRepository.getContent(auth.workspaceId)) ?? t("agentsDefaultContent");
 
   return (
     <AppShell section="profile">
@@ -53,7 +50,6 @@ export default async function ProfilePage() {
               <p className="mb-3 text-sm muted">{t("languageDescription")}</p>
               <ProfileLanguageForm currentLocale={currentLocale} />
             </section>
-            <AgentsEditDrawer initialContent={agentsContent} />
           </div>
         </div>
       </div>

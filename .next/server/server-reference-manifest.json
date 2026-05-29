@@ -1,35 +1,5 @@
 {
   "node": {
-    "401c3f82a8db49fdc82bf0b8fe37f03de83dbb8cc0": {
-      "workers": {
-        "app/(app)/board/page": {
-          "moduleId": 80208,
-          "async": true,
-          "exportedName": "createBoard",
-          "filename": "src/app/actions/boards.ts"
-        }
-      },
-      "layer": {
-        "app/(app)/board/page": "action-browser"
-      },
-      "filename": "src/app/actions/boards.ts",
-      "exportedName": "createBoard"
-    },
-    "409f3f7669c1238af456b0265d684ff64e46d45f0a": {
-      "workers": {
-        "app/(app)/board/page": {
-          "moduleId": 80208,
-          "async": true,
-          "exportedName": "deleteBoard",
-          "filename": "src/app/actions/boards.ts"
-        }
-      },
-      "layer": {
-        "app/(app)/board/page": "rsc"
-      },
-      "filename": "src/app/actions/boards.ts",
-      "exportedName": "deleteBoard"
-    },
     "4091f4ef0ca0c8d33ed532b164939536a2b434e5a6": {
       "workers": {
         "app/(app)/knowledge/page": {
@@ -38,9 +8,6 @@
           "exportedName": "createKnowledge",
           "filename": "src/app/actions/knowledge.ts"
         }
-      },
-      "layer": {
-        "app/(app)/knowledge/page": "action-browser"
       },
       "filename": "src/app/actions/knowledge.ts",
       "exportedName": "createKnowledge"
@@ -54,9 +21,6 @@
           "filename": "src/app/actions/knowledge.ts"
         }
       },
-      "layer": {
-        "app/(app)/knowledge/page": "action-browser"
-      },
       "filename": "src/app/actions/knowledge.ts",
       "exportedName": "deleteKnowledge"
     },
@@ -68,9 +32,6 @@
           "exportedName": "publishAgents",
           "filename": "src/app/actions/agents.ts"
         }
-      },
-      "layer": {
-        "app/(app)/profile/page": "action-browser"
       },
       "filename": "src/app/actions/agents.ts",
       "exportedName": "publishAgents"
@@ -84,9 +45,6 @@
           "filename": "src/app/actions/profile.ts"
         }
       },
-      "layer": {
-        "app/(app)/profile/page": "action-browser"
-      },
       "filename": "src/app/actions/profile.ts",
       "exportedName": "updateProfile"
     },
@@ -98,9 +56,6 @@
           "exportedName": "updateProfileLocale",
           "filename": "src/app/actions/profile.ts"
         }
-      },
-      "layer": {
-        "app/(app)/profile/page": "action-browser"
       },
       "filename": "src/app/actions/profile.ts",
       "exportedName": "updateProfileLocale"
@@ -114,9 +69,6 @@
           "filename": "src/app/actions/skills.ts"
         }
       },
-      "layer": {
-        "app/(app)/skills/page": "action-browser"
-      },
       "filename": "src/app/actions/skills.ts",
       "exportedName": "createSkill"
     },
@@ -128,9 +80,6 @@
           "exportedName": "removeUserSkill",
           "filename": "src/app/actions/user-skills.ts"
         }
-      },
-      "layer": {
-        "app/(app)/skills/page": "action-browser"
       },
       "filename": "src/app/actions/user-skills.ts",
       "exportedName": "removeUserSkill"
@@ -144,11 +93,110 @@
           "filename": "src/app/actions/user-skills.ts"
         }
       },
-      "layer": {
-        "app/(app)/skills/page": "action-browser"
-      },
       "filename": "src/app/actions/user-skills.ts",
       "exportedName": "addUserSkill"
+    },
+    "00a205e5ba1d34c2ef4b55d6805644eddf41f4851c": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": 89246,
+          "async": true,
+          "exportedName": "requestWorkspaceDeletion",
+          "filename": "src/app/actions/workspace-settings.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-settings.ts",
+      "exportedName": "requestWorkspaceDeletion"
+    },
+    "0088a6bc44b53de4a965f1506b438dfadf8721b100": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": 89246,
+          "async": true,
+          "exportedName": "restoreWorkspace",
+          "filename": "src/app/actions/workspace-settings.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-settings.ts",
+      "exportedName": "restoreWorkspace"
+    },
+    "4008705d6e8a29ec2014944bd3f365ccbf9d77a662": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": 89246,
+          "async": true,
+          "exportedName": "createWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-invites.ts",
+      "exportedName": "createWorkspaceInvite"
+    },
+    "40771bc60d3fb1533d1675fc81157b11f6e5a2d88c": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": 89246,
+          "async": true,
+          "exportedName": "revokeWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-invites.ts",
+      "exportedName": "revokeWorkspaceInvite"
+    },
+    "4028450b9436805a31e9cc42db1645ac82ce062730": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": 89246,
+          "async": true,
+          "exportedName": "renameWorkspace",
+          "filename": "src/app/actions/workspace-settings.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-settings.ts",
+      "exportedName": "renameWorkspace"
+    },
+    "0065de570766b5d51ee1ea136decda42ea29601c1e": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": 89246,
+          "async": true,
+          "exportedName": "getWorkspaceStats",
+          "filename": "src/app/actions/workspace-settings.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-settings.ts",
+      "exportedName": "getWorkspaceStats"
+    },
+    "00ffa94ba612f066d65f3fae4469c0669de1b24913": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": 89246,
+          "async": true,
+          "exportedName": "listWorkspaceInvites",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-invites.ts",
+      "exportedName": "listWorkspaceInvites"
+    },
+    "40413a3ff03638bbb6039297fdcff3ca05832980af": {
+      "workers": {
+        "app/(app)/workspace/settings/page": {
+          "moduleId": 89246,
+          "async": true,
+          "exportedName": "acceptWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        },
+        "app/(auth)/invite/[token]/page": {
+          "moduleId": 74410,
+          "async": true,
+          "exportedName": "acceptWorkspaceInvite",
+          "filename": "src/app/actions/workspace-invites.ts"
+        }
+      },
+      "filename": "src/app/actions/workspace-invites.ts",
+      "exportedName": "acceptWorkspaceInvite"
     }
   },
   "edge": {},

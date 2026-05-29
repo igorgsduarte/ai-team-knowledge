@@ -33,7 +33,7 @@ export function DemoLoginCard({ label, name, email, password }: DemoLoginCardPro
         throw new Error(payload.error || t("demoError"));
       }
 
-      router.replace("/board");
+      router.replace("/knowledge");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : t("demoError"));

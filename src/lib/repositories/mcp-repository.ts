@@ -1,3 +1,4 @@
+import "server-only";
 import { firestoreCollections, getFirestoreDb } from "@/lib/firebase/firestore";
 import type { McpApiKeyRecord, McpWorkspaceSettings } from "@/lib/types/mcp";
 

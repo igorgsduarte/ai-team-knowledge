@@ -1,46 +1,60 @@
 "use client";
 
 import { ExternalLink, MessageCircle, Trash2 } from "lucide-react";
+import { KeyboardEvent } from "react";
 import { useTranslations } from "next-intl";
 import { deleteKnowledge } from "@/app/actions/knowledge";
-import { RelativeTime } from "@/components/ui/relative-time";
+import { EntityCardAuthor } from "@/components/ui/entity-card-author";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { TagList } from "@/components/ui/tag-list";
-import { UserAvatar } from "@/components/ui/user-avatar";
 import { stripMarkdown } from "@/lib/markdown";
 import type { KnowledgeItem, KnowledgeType } from "@/lib/types/domain";
 
 type KnowledgeCardProps = {
   authorName: string;
   commentCount: number;
+  currentUserId: string;
   item: KnowledgeItem;
+  onSelect: (item: KnowledgeItem) => void;
 };
 
-export function KnowledgeCard({ authorName, commentCount, item }: KnowledgeCardProps) {
+export function KnowledgeCard({ authorName, commentCount, currentUserId, item, onSelect }: KnowledgeCardProps) {
   const t = useTranslations("Knowledge");
   const type: KnowledgeType = item.type ?? "article";
 
+  function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onSelect(item);
+    }
+  }
+
   return (
-    <article className="list-card knowledge-card">
+    <article
+      className="list-card knowledge-card knowledge-card-selectable"
+      onClick={() => onSelect(item)}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex={0}
+    >
       <div className="list-card-header">
-        <div className="board-card-author">
-          <UserAvatar name={authorName} />
-          <div>
-            <p className="font-semibold">{authorName}</p>
-            <RelativeTime date={item.createdAt} />
-          </div>
-        </div>
+        <EntityCardAuthor authorName={authorName} createdAt={item.createdAt} />
         <div className="board-card-actions">
           <StatusBadge
             kind="knowledge"
             label={type === "link" ? t("typeLink") : t("typeArticle")}
             value={type}
           />
-          <form action={deleteKnowledge.bind(null, item.id)}>
-            <button aria-label={t("delete")} className="icon-button" type="submit">
-              <Trash2 size={16} />
-            </button>
-          </form>
+          {item.createdBy === currentUserId ? (
+            <form
+              action={deleteKnowledge.bind(null, item.id)}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button aria-label={t("delete")} className="icon-button" type="submit">
+                <Trash2 size={16} />
+              </button>
+            </form>
+          ) : null}
         </div>
       </div>
       <h2 className="board-card-title">{item.title}</h2>
@@ -49,7 +63,13 @@ export function KnowledgeCard({ authorName, commentCount, item }: KnowledgeCardP
         {stripMarkdown(item.summary || item.body || "") || t("noContent")}
       </p>
       {type === "link" && item.url ? (
-        <a className="knowledge-link" href={item.url} rel="noreferrer" target="_blank">
+        <a
+          className="knowledge-link"
+          href={item.url}
+          onClick={(event) => event.stopPropagation()}
+          rel="noreferrer"
+          target="_blank"
+        >
           <ExternalLink size={14} />
           {item.url}
         </a>

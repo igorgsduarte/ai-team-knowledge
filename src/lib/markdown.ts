@@ -6,3 +6,12 @@ export function stripMarkdown(value: string): string {
     .replace(/\s+/g, " ")
     .trim();
 }
+
+export function buildSummary(content: string, maxLength = 240): string {
+  const normalized = content.replace(/\s+/g, " ").trim();
+  if (normalized.length <= maxLength) {
+    return normalized;
+  }
+
+  return `${normalized.slice(0, maxLength).trimEnd()}…`;
+}

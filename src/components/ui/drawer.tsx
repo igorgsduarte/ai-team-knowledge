@@ -7,10 +7,11 @@ type DrawerProps = {
   children: ReactNode;
   onOpenChange: (open: boolean) => void;
   open: boolean;
+  size?: "default" | "wide";
   title: string;
 };
 
-export function Drawer({ children, onOpenChange, open, title }: DrawerProps) {
+export function Drawer({ children, onOpenChange, open, size = "default", title }: DrawerProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
 
@@ -77,7 +78,7 @@ export function Drawer({ children, onOpenChange, open, title }: DrawerProps) {
       <div
         aria-labelledby={titleId}
         aria-modal="true"
-        className="drawer-panel"
+        className={size === "wide" ? "drawer-panel drawer-panel-wide" : "drawer-panel"}
         ref={panelRef}
         role="dialog"
       >

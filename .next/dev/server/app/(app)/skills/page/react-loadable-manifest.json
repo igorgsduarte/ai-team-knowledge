@@ -1,1 +1,28 @@
-{}
+{
+  "[project]/node_modules/.pnpm/@uiw+react-md-editor@4.1.1_@types+react@19.2.14_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/@uiw/react-md-editor/esm/index.js [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/node_modules/.pnpm/@uiw+react-md-editor@4.1.1_@types+react@19.2.14_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/@uiw/react-md-editor/esm/index.js [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/0x82_refractor_lang_08tfom~._.js",
+      "static/chunks/0x82_refractor_lib_0lmd9mn._.js",
+      "static/chunks/04np_parse5_dist_0-8qcii._.js",
+      "static/chunks/125j_micromark_dev_lib_078ya1m._.js",
+      "static/chunks/0va7_micromark-core-commonmark_dev_lib_0wf4id_._.js",
+      "static/chunks/0hwl_@uiw_react-md-editor_esm_0kzg5gx._.js",
+      "static/chunks/node_modules__pnpm_12tkxvq._.js",
+      "static/chunks/node_modules__pnpm_121o75_._.css",
+      "static/chunks/0hwl_@uiw_react-md-editor_esm_index_0jq694r.js"
+    ]
+  },
+  "[project]/node_modules/@uiw/react-markdown-preview/esm/index.js [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/node_modules/@uiw/react-markdown-preview/esm/index.js [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_refractor_lang_0v8azv1._.js",
+      "static/chunks/node_modules_refractor_lib_0pxrcgo._.js",
+      "static/chunks/node_modules_parse5_dist_0z49r7t._.js",
+      "static/chunks/node_modules_micromark-core-commonmark_dev_lib_13dj~6i._.js",
+      "static/chunks/node_modules_0uj.u7s._.js",
+      "static/chunks/node_modules_@uiw_react-markdown-preview_esm_styles_markdown_04jufd1.css",
+      "static/chunks/node_modules_@uiw_react-markdown-preview_esm_index_0jq694r.js"
+    ]
+  }
+}

@@ -1,12 +1,37 @@
 {
   "pages": {
-    "/_app": []
+    "/_app": [
+      "static/chunks/0ryz_next_dist_compiled_12uy-q9._.js",
+      "static/chunks/0ryz_next_dist_shared_lib_10ye98o._.js",
+      "static/chunks/0ryz_next_dist_client_0w39lfh._.js",
+      "static/chunks/0ryz_next_dist_0bz4e_w._.js",
+      "static/chunks/0ryz_next_app_08rhfh8.js",
+      "static/chunks/[next]_entry_page-loader_ts_0939d~~._.js",
+      "static/chunks/0x1c_react-dom_0m7r6jt._.js",
+      "static/chunks/node_modules__pnpm_0yd3xlv._.js",
+      "static/chunks/[root-of-the-server]__0c0okpg._.js",
+      "static/chunks/pages__app_07xvfw~._.js",
+      "static/chunks/turbopack-pages__app_0oq8qx_._.js"
+    ],
+    "/_error": [
+      "static/chunks/0ryz_next_dist_compiled_12uy-q9._.js",
+      "static/chunks/0ryz_next_dist_shared_lib_0cf2f86._.js",
+      "static/chunks/0ryz_next_dist_client_0w39lfh._.js",
+      "static/chunks/0ryz_next_dist_0.pp_gk._.js",
+      "static/chunks/[next]_entry_page-loader_ts_0ymulh~._.js",
+      "static/chunks/0x1c_react-dom_0m7r6jt._.js",
+      "static/chunks/node_modules__pnpm_0yd3xlv._.js",
+      "static/chunks/[root-of-the-server]__01mw43t._.js",
+      "static/chunks/pages__error_07xvfw~._.js",
+      "static/chunks/turbopack-pages__error_11k_fg~._.js"
+    ]
   },
   "devFiles": [],
   "polyfillFiles": [],
   "lowPriorityFiles": [
+    "static/development/_buildManifest.js",
     "static/development/_ssgManifest.js",
-    "static/development/_buildManifest.js"
+    "static/development/_clientMiddlewareManifest.js"
   ],
   "rootMainFiles": []
 }

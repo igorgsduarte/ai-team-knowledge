@@ -1,39 +1,36 @@
 export type ID = string;
 
-export type BoardStatus = "learning" | "doing" | "done";
 export type KnowledgeType = "link" | "article";
 export type UserSkillLevel = "beginner" | "intermediate" | "advanced";
 
+export type WorkspaceMemberRole = "owner" | "admin" | "member";
+export type WorkspaceMemberStatus = "active" | "inactive";
+
 export interface WorkspaceMember {
   userId: ID;
-  role: "owner" | "admin" | "member";
+  role: WorkspaceMemberRole;
+  status?: WorkspaceMemberStatus;
 }
+
+export type WorkspaceStatus = "active" | "pending_deletion";
 
 export interface Workspace {
   id: ID;
   name: string;
+  status?: WorkspaceStatus;
+  deletedAt?: string;
+  purgeScheduledAt?: string;
+  updatedBy?: ID;
   createdAt: string;
   updatedAt: string;
   members: WorkspaceMember[];
-}
-
-export interface Board {
-  id: ID;
-  workspaceId: ID;
-  title: string;
-  description?: string;
-  status?: BoardStatus;
-  tags?: string[];
-  createdBy: ID;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface KnowledgeItem {
   id: ID;
   workspaceId: ID;
   title: string;
-  body: string;
+  body?: string;
   summary?: string;
   type?: KnowledgeType;
   url?: string;
@@ -47,10 +44,21 @@ export interface Skill {
   id: ID;
   workspaceId: ID;
   name: string;
-  prompt: string;
+  prompt?: string;
   description?: string;
   tags?: string[];
   category?: string;
+  createdBy: ID;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Agent {
+  id: ID;
+  workspaceId: ID;
+  name: string;
+  summary?: string;
+  tags?: string[];
   createdBy: ID;
   createdAt: string;
   updatedAt: string;
@@ -67,7 +75,7 @@ export interface UserSkill {
 export interface Comment {
   id: ID;
   workspaceId: ID;
-  entityType: "board" | "knowledge" | "skill";
+  entityType: "agent" | "knowledge" | "skill";
   entityId: ID;
   body: string;
   createdBy: ID;
@@ -84,16 +92,6 @@ export interface FileMetadata {
   authorId: ID;
   contentHash: string;
   contentType: string;
-  createdAt: string;
-}
-
-export interface AgentsDocumentVersion {
-  id: ID;
-  workspaceId: ID;
-  version: number;
-  status: "draft" | "published";
-  authorId: ID;
-  storagePath: string;
   createdAt: string;
 }
 

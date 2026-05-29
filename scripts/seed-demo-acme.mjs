@@ -254,57 +254,37 @@ async function main() {
   const bobId = memberIds["acme-bob"] || members[1]?.userId;
   const demoId = memberIds["acme-demo"] || members[2]?.userId;
 
-  const boardEntries = [
-    { id: "board-1", title: "Migrar sidebar para tema claro", status: "doing", tags: ["ui", "css"], description: "## Objetivo\nAlinhar shell ao screenshot.", createdBy: aliceId },
-    { id: "board-2", title: "Estudar Firestore indexes", status: "learning", tags: ["firebase"], description: "Revisar índices compostos para comments.", createdBy: bobId },
-    { id: "board-3", title: "Playwright visual parity", status: "doing", tags: ["qa", "playwright"], description: "Automatizar comparação das cinco rotas.", createdBy: demoId },
-    { id: "board-4", title: "Drawer com markdown editor", status: "done", tags: ["ui", "markdown"], description: "Integrar @uiw/react-md-editor nos formulários.", createdBy: aliceId },
-    { id: "board-5", title: "Seed demo acme", status: "done", tags: ["data"], description: "Popular workspace com cards de validação.", createdBy: demoId },
-    { id: "board-6", title: "Mapa de skills do time", status: "learning", tags: ["skills"], description: "Cards por membro com níveis.", createdBy: bobId },
-  ];
-
-  for (const entry of boardEntries) {
-    await db.collection("boards").doc(entry.id).set(
-      {
-        id: entry.id,
-        workspaceId,
-        title: entry.title,
-        description: entry.description,
-        status: entry.status,
-        tags: entry.tags,
-        createdBy: entry.createdBy,
-        createdAt: now,
-        updatedAt: now,
-      },
-      { merge: true }
-    );
-  }
-
   const knowledgeEntries = [
     { id: "k-1", title: "Guia de onboarding Acme", type: "article", tags: ["onboarding"], body: "# Onboarding\nProcesso para novos membros.", createdBy: aliceId },
     { id: "k-2", title: "Next.js App Router", type: "link", url: "https://nextjs.org/docs", tags: ["nextjs"], body: "Documentação oficial.", createdBy: demoId },
     { id: "k-3", title: "Padrões de repositório", type: "article", tags: ["architecture"], body: "Isolamento por workspaceId.", createdBy: bobId },
     { id: "k-4", title: "Playwright best practices", type: "link", url: "https://playwright.dev", tags: ["qa"], body: "Testes visuais e E2E.", createdBy: demoId },
     { id: "k-5", title: "Design tokens em CSS", type: "article", tags: ["ui"], body: "Usar globals.css sem Tailwind.", createdBy: aliceId },
+    { id: "k-6", title: "Migrar sidebar para tema claro", type: "article", tags: ["ui", "css"], body: "## Objetivo\nAlinhar shell ao screenshot.", createdBy: aliceId },
+    { id: "k-7", title: "Estudar Firestore indexes", type: "article", tags: ["firebase"], body: "Revisar índices compostos para comments.", createdBy: bobId },
+    { id: "k-8", title: "Playwright visual parity", type: "article", tags: ["qa", "playwright"], body: "Automatizar comparação das quatro rotas.", createdBy: demoId },
+    { id: "k-9", title: "Drawer com markdown editor", type: "article", tags: ["ui", "markdown"], body: "Integrar @uiw/react-md-editor nos formulários.", createdBy: aliceId },
+    { id: "k-10", title: "Seed demo acme", type: "article", tags: ["data"], body: "Popular workspace com cards de validação.", createdBy: demoId },
+    { id: "k-11", title: "Mapa de skills do time", type: "article", tags: ["skills"], body: "Cards por membro com níveis.", createdBy: bobId },
   ];
 
   for (const entry of knowledgeEntries) {
-    await db.collection("knowledge").doc(entry.id).set(
-      {
-        id: entry.id,
-        workspaceId,
-        title: entry.title,
-        body: entry.body,
-        summary: entry.body.slice(0, 180),
-        type: entry.type,
-        url: entry.url,
-        tags: entry.tags,
-        createdBy: entry.createdBy,
-        createdAt: now,
-        updatedAt: now,
-      },
-      { merge: true }
-    );
+    const knowledgeDoc = {
+      id: entry.id,
+      workspaceId,
+      title: entry.title,
+      body: entry.body,
+      summary: entry.body.slice(0, 180),
+      type: entry.type,
+      tags: entry.tags,
+      createdBy: entry.createdBy,
+      createdAt: now,
+      updatedAt: now,
+    };
+    if (entry.url) {
+      knowledgeDoc.url = entry.url;
+    }
+    await db.collection("knowledge").doc(entry.id).set(knowledgeDoc, { merge: true });
   }
 
   const skillEntries = [
@@ -354,8 +334,8 @@ async function main() {
     {
       id: "comment-1",
       workspaceId,
-      entityType: "board",
-      entityId: "board-1",
+      entityType: "knowledge",
+      entityId: "k-6",
       body: "Ótimo progresso no shell.",
       createdBy: bobId,
       createdAt: now,
@@ -363,7 +343,7 @@ async function main() {
     { merge: true }
   );
 
-  const agentsMarkdown = `# Agents\n\n## Papel\nAssistente do workspace Acme.\n\n## Stack\nNext.js, Firebase, Playwright.\n\n## Convenções\n- Board como home\n- Drawers com markdown\n- MCP oculto na UI`;
+  const agentsMarkdown = `# Agents\n\n## Papel\nAssistente do workspace Acme.\n\n## Stack\nNext.js, Firebase, Playwright.\n\n## Convenções\n- Knowledge como home\n- Drawers com markdown\n- MCP oculto na UI`;
   const agentsPath = `workspaces/${workspaceId}/agents/agents-md/v1.md`;
 
   try {

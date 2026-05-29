@@ -26,16 +26,16 @@ export function SkillCreateDrawer() {
       <button className="primary-button" onClick={() => setOpen(true)} type="button">
         {t("newSkill")}
       </button>
-      <Drawer onOpenChange={setOpen} open={open} title={t("drawerTitle")}>
+      <Drawer onOpenChange={setOpen} open={open} size="wide" title={t("drawerTitle")}>
         <form action={onSubmit} className="drawer-form">
           <label>
             {t("fieldName")}
             <input name="name" placeholder={t("namePlaceholder")} required />
           </label>
-          <label>
-            {t("fieldPrompt")}
+          <div className="entity-drawer-field">
+            <span className="entity-drawer-field-label">{t("fieldPrompt")}</span>
             <MarkdownEditor onChange={setDescription} value={description} />
-          </label>
+          </div>
           <label>
             {t("fieldTags")}
             <input name="tags" placeholder={t("tagsPlaceholder")} />

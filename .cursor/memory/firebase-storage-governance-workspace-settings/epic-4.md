@@ -3,19 +3,19 @@ name: "Épico 4: Exclusão, restauração e purge agendado (CF)"
 todos:
   - id: T4.1
     content: "Scaffold Cloud Functions v2 onSchedule"
-    status: pending
+    status: completed
   - id: T4.2
     content: "Implementar purge-deleted-workspaces"
-    status: pending
+    status: completed
   - id: T4.3
     content: "Serviço de purge Storage e Firestore no backend"
-    status: pending
+    status: completed
   - id: T4.4
     content: "Testes de integração do lifecycle completo"
-    status: pending
+    status: completed
   - id: T4.5
     content: "ADR e checklist de deploy operacional"
-    status: pending
+    status: completed
 decisions: D-05, D-06
 goal: "Após 30 dias em pending_deletion sem restauração, job agendado remove Storage e dados Firestore do workspace de forma idempotente."
 ---
@@ -26,7 +26,7 @@ goal: "Após 30 dias em pending_deletion sem restauração, job agendado remove 
 >
 > **Covers decisions:** D-05, D-06
 
-- [ ] **T4.1** — Scaffold Cloud Functions v2 onSchedule
+- [x] **T4.1** — Scaffold Cloud Functions v2 onSchedule
 
   ```yaml
   id: T4.1
@@ -46,7 +46,7 @@ goal: "Após 30 dias em pending_deletion sem restauração, job agendado remove 
   done: "Esqueleto CF deployável referenciado no firebase.json."
   ```
 
-- [ ] **T4.2** — Implementar purge-deleted-workspaces
+- [x] **T4.2** — Implementar purge-deleted-workspaces
 
   ```yaml
   id: T4.2
@@ -66,7 +66,7 @@ goal: "Após 30 dias em pending_deletion sem restauração, job agendado remove 
   done: "Função agendada implementada e exportada."
   ```
 
-- [ ] **T4.3** — Serviço de purge Storage e Firestore no backend
+- [x] **T4.3** — Serviço de purge Storage e Firestore no backend
 
   ```yaml
   id: T4.3
@@ -86,7 +86,7 @@ goal: "Após 30 dias em pending_deletion sem restauração, job agendado remove 
   done: "Purge remove Storage e metadados Firestore do workspace."
   ```
 
-- [ ] **T4.4** — Testes de integração do lifecycle completo
+- [x] **T4.4** — Testes de integração do lifecycle completo
 
   ```yaml
   id: T4.4
@@ -104,7 +104,7 @@ goal: "Após 30 dias em pending_deletion sem restauração, job agendado remove 
   done: "CI local cobre transições críticas de lifecycle e isolamento."
   ```
 
-- [ ] **T4.5** — ADR e checklist de deploy operacional
+- [x] **T4.5** — ADR e checklist de deploy operacional
 
   ```yaml
   id: T4.5

@@ -3,22 +3,22 @@ name: "Épico 1: Regras de segurança e governança de Storage"
 todos:
   - id: T1.1
     content: "Definir política de paths e tipos de governança"
-    status: pending
+    status: completed
   - id: T1.2
     content: "Versionar storage.rules e firestore.rules com deny cliente"
-    status: pending
+    status: completed
   - id: T1.3
     content: "Configurar firebase.json para rules e functions"
-    status: pending
+    status: completed
   - id: T1.4
     content: "Endurecer storage.ts com validação de policy"
-    status: pending
+    status: completed
   - id: T1.5
     content: "Helpers requireWorkspaceMember e requireWorkspaceOwner"
-    status: pending
+    status: completed
   - id: T1.6
     content: "Aplicar governança nas actions e repositórios de arquivo"
-    status: pending
+    status: completed
 decisions: D-02, D-03, D-04, D-08
 goal: "Arquivos de knowledge, skills, agents e context ficam inacessíveis diretamente pelo cliente e isolados por workspace no backend."
 ---
@@ -29,7 +29,7 @@ goal: "Arquivos de knowledge, skills, agents e context ficam inacessíveis diret
 >
 > **Covers decisions:** D-02, D-03, D-08
 
-- [ ] **T1.1** — Definir política de paths e tipos de governança
+- [x] **T1.1** — Definir política de paths e tipos de governança
 
   ```yaml
   id: T1.1
@@ -50,7 +50,7 @@ goal: "Arquivos de knowledge, skills, agents e context ficam inacessíveis diret
   done: "Contrato de path e validação existem e são importáveis por storage.ts e repositórios."
   ```
 
-- [ ] **T1.2** — Versionar storage.rules e firestore.rules com deny cliente
+- [x] **T1.2** — Versionar storage.rules e firestore.rules com deny cliente
 
   ```yaml
   id: T1.2
@@ -70,7 +70,7 @@ goal: "Arquivos de knowledge, skills, agents e context ficam inacessíveis diret
   done: "Ficheiros de rules existem no repo e refletem política backend-only para Storage."
   ```
 
-- [ ] **T1.3** — Configurar firebase.json para rules e functions
+- [x] **T1.3** — Configurar firebase.json para rules e functions
 
   ```yaml
   id: T1.3
@@ -91,7 +91,7 @@ goal: "Arquivos de knowledge, skills, agents e context ficam inacessíveis diret
   done: "Projeto Firebase configurável a partir do repositório com rules versionadas."
   ```
 
-- [ ] **T1.4** — Endurecer storage.ts com validação de policy
+- [x] **T1.4** — Endurecer storage.ts com validação de policy
 
   ```yaml
   id: T1.4
@@ -111,7 +111,7 @@ goal: "Arquivos de knowledge, skills, agents e context ficam inacessíveis diret
   done: "Todas as operações de Storage no backend passam pela policy."
   ```
 
-- [ ] **T1.5** — Helpers requireWorkspaceMember e requireWorkspaceOwner
+- [x] **T1.5** — Helpers requireWorkspaceMember e requireWorkspaceOwner
 
   ```yaml
   id: T1.5
@@ -131,7 +131,7 @@ goal: "Arquivos de knowledge, skills, agents e context ficam inacessíveis diret
   done: "Server Actions podem importar helpers únicos para autorização de workspace."
   ```
 
-- [ ] **T1.6** — Aplicar governança nas actions e repositórios de arquivo
+- [x] **T1.6** — Aplicar governança nas actions e repositórios de arquivo
 
   ```yaml
   id: T1.6

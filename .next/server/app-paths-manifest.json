@@ -7,6 +7,8 @@
   "/(app)/skills/[id]/page": "app/(app)/skills/[id]/page.js",
   "/(app)/skills/page": "app/(app)/skills/page.js",
   "/(app)/team/page": "app/(app)/team/page.js",
+  "/(app)/workspace/settings/page": "app/(app)/workspace/settings/page.js",
+  "/(auth)/invite/[token]/page": "app/(auth)/invite/[token]/page.js",
   "/(auth)/sign-in/page": "app/(auth)/sign-in/page.js",
   "/(auth)/sign-up/page": "app/(auth)/sign-up/page.js",
   "/_global-error/page": "app/_global-error/page.js",

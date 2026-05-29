@@ -1,20 +1,20 @@
 ---
 name: "firebase-storage-governance-workspace-settings"
-status: planning complete
+status: implementation complete
 overview: "Governança rígida do Firebase Storage por workspace, acesso exclusivo via backend, e gestão owner do workspace com exclusão soft de 30 dias e purge agendado."
 todos:
   - id: epic-1
     content: "Regras de segurança e governança de Storage"
-    status: pending
+    status: completed
   - id: epic-2
     content: "Domínio workspace, convites e lifecycle"
-    status: pending
+    status: completed
   - id: epic-3
     content: "Tela de configurações do workspace (owner)"
-    status: pending
+    status: completed
   - id: epic-4
     content: "Exclusão, restauração e purge agendado (CF)"
-    status: pending
+    status: completed
 epics:
   - id: epic-1
     file: ./epic-1.md

@@ -3,22 +3,22 @@ name: "Épico 2: Domínio workspace, convites e lifecycle"
 todos:
   - id: T2.1
     content: "Modelar lifecycle e convites no domínio"
-    status: pending
+    status: completed
   - id: T2.2
     content: "Implementar workspaces-repository"
-    status: pending
+    status: completed
   - id: T2.3
     content: "Implementar workspace-invites-repository"
-    status: pending
+    status: completed
   - id: T2.4
     content: "Server Actions de configurações do workspace"
-    status: pending
+    status: completed
   - id: T2.5
     content: "Server Actions e fluxo de aceite de convite"
-    status: pending
+    status: completed
   - id: T2.6
     content: "Bloquear app quando workspace pending_deletion"
-    status: pending
+    status: completed
 decisions: D-05, D-07
 goal: "Workspace suporta estados active e pending_deletion, convites por token e operações owner de rename, stats e soft delete."
 ---
@@ -29,7 +29,7 @@ goal: "Workspace suporta estados active e pending_deletion, convites por token e
 >
 > **Covers decisions:** D-05, D-07
 
-- [ ] **T2.1** — Modelar lifecycle e convites no domínio
+- [x] **T2.1** — Modelar lifecycle e convites no domínio
 
   ```yaml
   id: T2.1
@@ -50,7 +50,7 @@ goal: "Workspace suporta estados active e pending_deletion, convites por token e
   done: "Contratos de lifecycle e convite prontos para repositórios."
   ```
 
-- [ ] **T2.2** — Implementar workspaces-repository
+- [x] **T2.2** — Implementar workspaces-repository
 
   ```yaml
   id: T2.2
@@ -70,7 +70,7 @@ goal: "Workspace suporta estados active e pending_deletion, convites por token e
   done: "Repositório centraliza mutações de lifecycle do workspace."
   ```
 
-- [ ] **T2.3** — Implementar workspace-invites-repository
+- [x] **T2.3** — Implementar workspace-invites-repository
 
   ```yaml
   id: T2.3
@@ -88,7 +88,7 @@ goal: "Workspace suporta estados active e pending_deletion, convites por token e
   done: "Convites persistidos e associáveis a membership."
   ```
 
-- [ ] **T2.4** — Server Actions de configurações do workspace
+- [x] **T2.4** — Server Actions de configurações do workspace
 
   ```yaml
   id: T2.4
@@ -108,7 +108,7 @@ goal: "Workspace suporta estados active e pending_deletion, convites por token e
   done: "Owner pode mutar lifecycle e metadados via Server Actions."
   ```
 
-- [ ] **T2.5** — Server Actions e fluxo de aceite de convite
+- [x] **T2.5** — Server Actions e fluxo de aceite de convite
 
   ```yaml
   id: T2.5
@@ -127,7 +127,7 @@ goal: "Workspace suporta estados active e pending_deletion, convites por token e
   done: "Fluxo de convite por link funciona para utilizador autenticado."
   ```
 
-- [ ] **T2.6** — Bloquear app quando workspace pending_deletion
+- [x] **T2.6** — Bloquear app quando workspace pending_deletion
 
   ```yaml
   id: T2.6

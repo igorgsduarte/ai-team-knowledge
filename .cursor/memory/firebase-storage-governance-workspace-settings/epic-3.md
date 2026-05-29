@@ -3,19 +3,19 @@ name: "Épico 3: Tela de configurações do workspace (owner)"
 todos:
   - id: T3.1
     content: "Página SSR workspace/settings owner-only"
-    status: pending
+    status: completed
   - id: T3.2
     content: "Painel de rename e estatísticas de arquivos"
-    status: pending
+    status: completed
   - id: T3.3
     content: "Painel de membros e convites"
-    status: pending
+    status: completed
   - id: T3.4
     content: "Zona de perigo: exclusão e restauração"
-    status: pending
+    status: completed
   - id: T3.5
     content: "Navegação e i18n da área de settings"
-    status: pending
+    status: completed
 decisions: D-04, D-07
 goal: "Owner gere workspace numa única tela: nome, métricas, convites e exclusão/restauração com confirmação explícita."
 ---
@@ -26,7 +26,7 @@ goal: "Owner gere workspace numa única tela: nome, métricas, convites e exclus
 >
 > **Covers decisions:** D-04, D-07
 
-- [ ] **T3.1** — Página SSR workspace/settings owner-only
+- [x] **T3.1** — Página SSR workspace/settings owner-only
 
   ```yaml
   id: T3.1
@@ -45,7 +45,7 @@ goal: "Owner gere workspace numa única tela: nome, métricas, convites e exclus
   done: "Rota de settings existe e só owner vê conteúdo de gestão."
   ```
 
-- [ ] **T3.2** — Painel de rename e estatísticas de arquivos
+- [x] **T3.2** — Painel de rename e estatísticas de arquivos
 
   ```yaml
   id: T3.2
@@ -63,7 +63,7 @@ goal: "Owner gere workspace numa única tela: nome, métricas, convites e exclus
   done: "Owner vê e edita nome e vê quantidade de arquivos versionados."
   ```
 
-- [ ] **T3.3** — Painel de membros e convites
+- [x] **T3.3** — Painel de membros e convites
 
   ```yaml
   id: T3.3
@@ -81,7 +81,7 @@ goal: "Owner gere workspace numa única tela: nome, métricas, convites e exclus
   done: "Owner gere membros e convites na mesma página."
   ```
 
-- [ ] **T3.4** — Zona de perigo: exclusão e restauração
+- [x] **T3.4** — Zona de perigo: exclusão e restauração
 
   ```yaml
   id: T3.4
@@ -99,7 +99,7 @@ goal: "Owner gere workspace numa única tela: nome, métricas, convites e exclus
   done: "Fluxos de exclusão e restauração utilizáveis pelo owner na UI."
   ```
 
-- [ ] **T3.5** — Navegação e i18n da área de settings
+- [x] **T3.5** — Navegação e i18n da área de settings
 
   ```yaml
   id: T3.5

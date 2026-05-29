@@ -9,9 +9,6 @@
           "filename": "src/app/actions/knowledge.ts"
         }
       },
-      "layer": {
-        "app/(app)/knowledge/page": "action-browser"
-      },
       "exportedName": "createKnowledge",
       "filename": "src/app/actions/knowledge.ts"
     },
@@ -23,9 +20,6 @@
           "exportedName": "deleteKnowledge",
           "filename": "src/app/actions/knowledge.ts"
         }
-      },
-      "layer": {
-        "app/(app)/knowledge/page": "action-browser"
       },
       "exportedName": "deleteKnowledge",
       "filename": "src/app/actions/knowledge.ts"

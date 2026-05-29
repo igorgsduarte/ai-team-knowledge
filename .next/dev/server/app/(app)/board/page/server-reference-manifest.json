@@ -14,6 +14,21 @@
       },
       "exportedName": "createBoard",
       "filename": "src/app/actions/boards.ts"
+    },
+    "4086bc6b7696c9e5ef9877f487943d1c4a585e36b6": {
+      "workers": {
+        "app/(app)/board/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/board/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/boards.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "deleteBoard",
+          "filename": "src/app/actions/boards.ts"
+        }
+      },
+      "layer": {
+        "app/(app)/board/page": "rsc"
+      },
+      "exportedName": "deleteBoard",
+      "filename": "src/app/actions/boards.ts"
     }
   },
   "edge": {}

@@ -28,7 +28,7 @@ export function SignInForm() {
         throw new Error(payload.error || t("signInError"));
       }
 
-      router.replace("/board");
+      router.replace("/knowledge");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : t("signInError"));

@@ -1,17 +1,8 @@
 {
   "version": 1,
   "functions": {
-    "/api/auth/sign-out": {},
-    "/api/auth/sign-up": {},
     "/api/auth/sign-in": {},
-    "/_middleware": {
-      "runtime": "nodejs",
-      "matchers": [
-        {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!api|_next\\/static|_next\\/image|favicon.ico).*))(\\.json)?[\\/#\\?]?$",
-          "originalSource": "/((?!api|_next/static|_next/image|favicon.ico).*)"
-        }
-      ]
-    }
+    "/api/auth/sign-out": {},
+    "/api/auth/sign-up": {}
   }
 }

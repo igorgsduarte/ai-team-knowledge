@@ -3,17 +3,98 @@
     "406a3ea59a60bea16dabb114ba074947844d0cf7c7": {
       "workers": {
         "app/(app)/knowledge/page": {
-          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": true,
           "exportedName": "createKnowledge",
           "filename": "src/app/actions/knowledge.ts"
         }
       },
-      "layer": {
-        "app/(app)/knowledge/page": "action-browser"
-      },
       "exportedName": "createKnowledge",
       "filename": "src/app/actions/knowledge.ts"
+    },
+    "40ca85d2a23cfd2baba4bf8344d9aacdbb2dd3a1bb": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "deleteKnowledge",
+          "filename": "src/app/actions/knowledge.ts"
+        }
+      },
+      "exportedName": "deleteKnowledge",
+      "filename": "src/app/actions/knowledge.ts"
+    },
+    "40e6824c7c9d35daa2f408d6b111e32c9b3418c9d5": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "getKnowledgeContent",
+          "filename": "src/app/actions/knowledge.ts"
+        }
+      },
+      "exportedName": "getKnowledgeContent",
+      "filename": "src/app/actions/knowledge.ts"
+    },
+    "606196f07a5a51f9350a5d7e590762099505ac330a": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateKnowledge",
+          "filename": "src/app/actions/knowledge.ts"
+        }
+      },
+      "exportedName": "updateKnowledge",
+      "filename": "src/app/actions/knowledge.ts"
+    },
+    "4068d134b466b5984c680612c8a0414c66919021c6": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "createComment",
+          "filename": "src/app/actions/comments.ts"
+        }
+      },
+      "exportedName": "createComment",
+      "filename": "src/app/actions/comments.ts"
+    },
+    "40c25d1c4d1cb28b3effb138e2ea6e7d17ae92657d": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "deleteComment",
+          "filename": "src/app/actions/comments.ts"
+        }
+      },
+      "exportedName": "deleteComment",
+      "filename": "src/app/actions/comments.ts"
+    },
+    "60e01483af047098229f6c62fe6d565b5203a4af97": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "listComments",
+          "filename": "src/app/actions/comments.ts"
+        }
+      },
+      "exportedName": "listComments",
+      "filename": "src/app/actions/comments.ts"
+    },
+    "60b0b2c97d05b41705d3bf84c63a3f5a99618e1b89": {
+      "workers": {
+        "app/(app)/knowledge/page": {
+          "moduleId": "[project]/.next-internal/server/app/(app)/knowledge/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/actions/knowledge.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/actions/comments.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true,
+          "exportedName": "updateComment",
+          "filename": "src/app/actions/comments.ts"
+        }
+      },
+      "exportedName": "updateComment",
+      "filename": "src/app/actions/comments.ts"
     }
   },
   "edge": {}

@@ -2,6 +2,9 @@
   "name": "team-ai-knowledge",
   "private": true,
   "version": "0.0.0",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,18 +12,24 @@
     "seed:demo": "node scripts/seed-demo-acme.mjs",
     "type-check": "tsc --noEmit",
     "test": "vitest run",
+    "firebase:deploy:rules": "firebase deploy --only firestore:rules,firestore:indexes,storage",
+    "firebase:deploy:functions": "firebase deploy --only functions",
     "test:visual": "playwright test",
-    "test:visual:update": "playwright test --update-snapshots"
+    "test:visual:update": "playwright test --update-snapshots",
+    "security:audit": "node scripts/security-audit.mjs",
+    "lint:ci": "bun run type-check"
   },
   "dependencies": {
     "@uiw/react-md-editor": "^4.1.1",
     "firebase": "^12.4.0",
     "firebase-admin": "^13.0.0",
     "lucide-react": "^1.17.0",
-    "next": "16.0.2",
+    "next": "^16.2.5",
     "next-intl": "^4.13.0",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "server-only": "^0.0.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
